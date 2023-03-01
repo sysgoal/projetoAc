@@ -135,7 +135,28 @@ class HorarioAgendaController extends Controller {
         //}
     }
 
-    public function actionInsereDatas($id = null, $inicio = null, $fim = null, $data = null) {
+    public function actionInsereDatas($aluno = null, $profissional = null, $agendamento = null, $inicio = null, $fim = null, $datas = null, $nome = null) {
+        if (Yii::$app->user->id) {
+            $horario = new HorarioAgenda();
+            $datas = explode(',', $datas);
+            foreach ($datas as $data) {
+                $horario = new HorarioAgenda();
+                $horario->id_aluno = $aluno;
+                $horario->id_profissional = $profissional;
+                $horario->hr_inicio = $inicio;
+                $horario->hr_fim = $fim;
+                $horario->dt_inicio = $data;
+                $horario->tp_agendamento = $agendamento;
+                $horario->nome = $nome;
+                $horario->save();
+            }
+        } else {
+            return $this->redirect(['site/about']);
+        }
+    }
+
+
+    public function actionInsereDatasReagendamento($id = null, $inicio = null, $fim = null, $data = null) {
         if (Yii::$app->user->id) {
             $registro = HorarioAgenda::find()->where(['id' => $id])->one();
             $registro->status = 1;

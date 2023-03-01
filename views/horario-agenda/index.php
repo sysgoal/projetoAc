@@ -256,7 +256,7 @@ $JsEventClick = '
             }, function(data) {
              
                 if(data < 6){
-                  $.get("index.php?r=horario-agenda/insere-datas", {
+                  $.get("index.php?r=horario-agenda/insere-datas-reagendamento", {
                           id: event.id,
                           inicio: $("#horaIni").val(),
                           fim: $("#horaFim").val(),
@@ -266,7 +266,7 @@ $JsEventClick = '
                     });
                   }else{
                     if( permissao == "Administrador" ){
-                      $.get("index.php?r=horario-agenda/insere-datas", {
+                      $.get("index.php?r=horario-agenda/insere-datas-reagendamento", {
                         id: event.id,
                         inicio: $("#horaIni").val(),
                         fim: $("#horaFim").val(),
