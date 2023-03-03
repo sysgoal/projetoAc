@@ -88,7 +88,7 @@ $JsEventClick = '
                 } 
                $("#tabelaHistoricoAvaliacao").hide();  
             }
-            if(event.status == 0){
+            if(event.justificativa == null && event.status == 0){
               $("#botaoReagendar").show();
               $("#combo").show();
               $("#usuarioModificacao").hide();
@@ -136,10 +136,6 @@ $JsEventClick = '
           $("#botaoExcluir").show();
         }
 
-        if(permissao != "Administrador"){
-          $("#botaoExcluir").hide();
-        }
-
         $("#modalHistoricoPaciente .modal-horario").html("Data: <b>" + $.fullCalendar.formatDate(event.start, "DD/MM/YYYY") + 
         "</b> Horário: <b> " + $.fullCalendar.formatDate(event.start, "HH:mm") + 
         "</b> às <b>" + $.fullCalendar.formatDate(event.end, "HH:mm") + " </b>");
@@ -177,17 +173,21 @@ $JsEventClick = '
                 let id = event.id;
                 let cor = "#DAA520";
                 let nome = event.title;
+                let status = 0;
 
             if (justificativa == "Finalizado") {
                 cor = "#008000";
             } else if (justificativa == "Não Compareceu") {
               cor = "#8B0000";
+            } else if(justificativa == "Falta Justificada"){
+              status = 1;
             }
             
             $.get("index.php?r=horario-agenda/update-horario", {
               id: id,
               just: justificativa,
-              cor: cor
+              cor: cor,
+              status: status
             }, function(data) {
               alert("Atualizado com sucesso!");
               location.reload();
