@@ -179,7 +179,7 @@ $JsEventClick = '
                 cor = "#008000";
             } else if (justificativa == "Não Compareceu") {
               cor = "#8B0000";
-            } else if(justificativa == "Justificado"){
+            } else if(justificativa == "Falta Justificada"){
               status = 1;
             }
             
