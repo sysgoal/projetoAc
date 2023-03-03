@@ -186,9 +186,9 @@ class HorarioAgendaController extends Controller {
         }
     }
 
-    public function actionUpdateHorario($id, $just, $cor = '#8B0000', $observacao = null, $descricao = null) {
+    public function actionUpdateHorario($id, $just, $cor = '#8B0000', $observacao = null, $descricao = null, $status = 0) {
         if (Yii::$app->user->id) {
-            $data = HorarioAgenda::updateAll(['fl_efetuado' => '1', 'ds_cor' => $cor, 'ds_agendamento' => $just, 'ds_objetivo' => $observacao, 'ds_descricao' => $descricao], ['id' => $id]);
+            $data = HorarioAgenda::updateAll(['fl_efetuado' => '1', 'ds_cor' => $cor, 'ds_agendamento' => $just, 'ds_objetivo' => $observacao, 'ds_descricao' => $descricao, 'status' => $status], ['id' => $id]);
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             return $data;
         } else {
