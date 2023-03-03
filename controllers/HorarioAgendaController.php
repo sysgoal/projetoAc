@@ -198,9 +198,14 @@ class HorarioAgendaController extends Controller {
 
     public function actionRecuperarTamanhoLista($profissional, $dataAlt, $horaIni) {
         if (Yii::$app->user->identity->permissao != "Administrador") {
-            $dataAlt = str_replace("/", "-", $dataAlt);
-            $dataAlt = Yii::$app->formatter->asDate($dataAlt, 'php:Y-m-d');
-            return HorarioAgenda::find()->where(['id_profissional'=> $profissional, 'dt_inicio' => $dataAlt, 'hr_inicio'=>$horaIni,  'status' => 0])->count();
+            $datas = explode(',', $dataAlt);
+            foreach ($datas as $data) {
+                $cont = 0;
+                $data = str_replace("/", "-", $data);
+                $data = Yii::$app->formatter->asDate($data, 'php:Y-m-d');
+                $cont = $cont + HorarioAgenda::find()->where(['id_profissional'=> $profissional, 'dt_inicio' => $data, 'hr_inicio'=>$horaIni,  'status' => 0])->count(); 
+            }
+            return $cont;
         }else{
             return 1;
         }
