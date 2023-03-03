@@ -295,9 +295,15 @@ class HorarioAgendaController extends Controller {
                         }
                         $horarioAux->textColor = 'black';
                     } else {
-                        //HORARIO VENCIDO - COR VERMELHA
-                        $horarioAux->color = '#8B0000';
-                        $horarioAux->backgroundColor = '#8B0000';
+                        if($horarioAux->justificativa == null){
+                            //HORARIO PENDENTE DE AÇÃO - COR AZUL
+                            $horarioAux->color = '#1797f7';
+                            $horarioAux->backgroundColor = '#1797f7';
+                        }else{
+                            //HORARIO VENCIDO COM NAO COMPARECEU - COR VERMELHA
+                            $horarioAux->color = '#8B0000';
+                            $horarioAux->backgroundColor = '#8B0000';
+                        }
                     }
                 }
                 foreach ($listaHorarios as $itemHorario) {
