@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
 use yii\base\Model;
 use app\models\Event;
 use Date;
+use DateTime;
 
 /**
  * HorarioAgendaController implements the CRUD actions for HorarioAgenda model.
@@ -164,7 +165,7 @@ class HorarioAgendaController extends Controller {
             $dataOriginal = str_replace("-", "/", $registro->dt_inicio);
             $dataOriginal = Yii::$app->formatter->asDate($dataOriginal, 'php:d/m/Y');
             $registro->dt_inicio = $dataOriginal;
-            $registro->dt_modificacao = date('Y-m-d H:i');
+           // $registro->dt_modificacao = date('Y-m-d H:i');
             $registro->ds_agendamento = "Reagendado";
             $registro->ds_cor = "#ff8301";
             $registro->save();
@@ -266,9 +267,8 @@ class HorarioAgendaController extends Controller {
                 }
                 $horarioAux->status = $horario->status;
                 $horarioAux->usuarioModificacao = $horario->ds_usuario_modificacao;
-                $dataOriginal = str_replace("-", "/", $horario->dt_modificacao);
-                $dataOriginal = Yii::$app->formatter->asDate($dataOriginal, 'php:d/m/Y H:i');
-                $horarioAux->dataModificacao = $dataOriginal;
+                $teste = new DateTime($horario->dt_modificacao);
+                $horarioAux->dataModificacao = $teste->format('d/m/Y H:i:s');
                 // $dateobject = new DateTime( $event->dt_inicio . '' . $event->hr_inicio );                        
                 $horarioAux->start = $horario->dt_inicio . ' ' . $horario->hr_inicio;
                 $horarioAux->end = $horario->dt_inicio . ' ' . $horario->hr_fim;
