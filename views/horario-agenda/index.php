@@ -88,7 +88,7 @@ $JsEventClick = '
                 } 
                $("#tabelaHistoricoAvaliacao").hide();  
             }
-            if(event.status == 0){
+            if(event.justificativa == null && event.status == 0){
               $("#botaoReagendar").show();
               $("#combo").show();
               $("#usuarioModificacao").hide();
