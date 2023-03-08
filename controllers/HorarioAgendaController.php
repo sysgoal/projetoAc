@@ -200,12 +200,16 @@ class HorarioAgendaController extends Controller {
         if (Yii::$app->user->identity->permissao != "Administrador") {
             $datas = explode(',', $dataAlt);
             foreach ($datas as $data) {
-                $cont = 0;
                 $data = str_replace("/", "-", $data);
                 $data = Yii::$app->formatter->asDate($data, 'php:Y-m-d');
-                $cont = $cont + HorarioAgenda::find()->where(['id_profissional'=> $profissional, 'dt_inicio' => $data, 'hr_inicio'=>$horaIni,  'status' => 0])->count(); 
+                $cont = HorarioAgenda::find()->where(['id_profissional'=> $profissional, 'dt_inicio' => $data, 'hr_inicio'=>$horaIni,  'status' => 0])->count(); 
+                if($cont >= 6){
+                    return $cont;
+                }
             }
-            return $cont;
+
+            return 1;
+            
         }else{
             return 1;
         }
