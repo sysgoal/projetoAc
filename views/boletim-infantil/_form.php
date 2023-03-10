@@ -370,10 +370,11 @@ if ($situacao == 'cadastradoA') {
                                     'model' => $model,
                                     'attribute' => 'id',
                                     'data' => $alunos,
-                                    'options' => ['placeholder' => ' --Selecione um paciente-- ', 'id' => 'al00'],
+                                    'options' => ['placeholder' => ' --Selecione um aluno-- ', 'id' => 'al00'],
                                     'language' => 'pt_BR',
                                     'pluginOptions' => [
                                         'allowClear' => true,
+                                        'dropdownParent' => '#festaToucasModal'
                                     ],
                                 ])
                                 ?> 
@@ -385,7 +386,8 @@ if ($situacao == 'cadastradoA') {
                                     'data' => $itemsProfissional, // the select option data items.The array keys are option values, and the array values are the corresponding option labels
                                     'options' => ['placeholder' => 'Selecione um professor', 'id' => 'profissional'],
                                     'pluginOptions' => [
-                                        'allowClear' => true
+                                        'allowClear' => true,
+                                        'dropdownParent' => '#festaToucasModal'
                                     ],]);
                                 ?>
                             </div>
@@ -495,6 +497,7 @@ if ($situacao == 'cadastradoA') {
                                 'language' => 'pt_BR',
                                 'pluginOptions' => [
                                     'allowClear' => true,
+                                    'dropdownParent' => '#avaliacaoInfantil'
                                 ],
                             ])
                             ?>   
