@@ -61,6 +61,7 @@ $JsEventClick = '
             $("#modalHistoricoPaciente .modal-agend").html(" ");
             $("#modalHistoricoPaciente .modal-horario").html(" ");
             $("#modalHistoricoPaciente .modal-just").html(" ");
+            $("#modalHistoricoPaciente .modal-conv").html(" ");
             $("#modalHistoricoPaciente .modal-usu").html(" ");
             $("#modalHistoricoPaciente .modal-data").html(" ");
             $("#visualiza").hide();
@@ -72,6 +73,7 @@ $JsEventClick = '
             let msg = "";
             let link = "";
             let agendamento = "";
+            let convenio = "";
             let permissao = $("#idUsuario").val();            
             if (permissao == "Administrador"){
                 $("#tabelaHistoricoAvaliacaoSemVisualizar").hide();     
@@ -121,7 +123,7 @@ $JsEventClick = '
           $("#tipoAvaliacao").hide();
         }
         $("#modalHistoricoPaciente .modal-agend").html("Tipo de agendamento: <b>" + agendamento + "</b>");
-
+        $("#modalHistoricoPaciente .modal-conv").html("Convênio: <b>" + event.convenio + "</b>&nbsp;&nbsp;&nbsp;"); 
         if (event.justificativa != null) {
           $("#modalHistoricoPaciente .modal-just").html("Justificativa: <b>" + event.justificativa + "</b>");
           if(event.status == 1){
@@ -180,7 +182,7 @@ $JsEventClick = '
             } else if (justificativa == "Não Compareceu") {
               cor = "#8B0000";
             } else if(justificativa == "Falta Justificada"){
-              status = 1;
+              status = 2;
             }
             
             $.get("index.php?r=horario-agenda/update-horario", {
@@ -369,7 +371,7 @@ $JsEventClick = '
           $("#modalDadosPaciente .modal-title").html("Detalhes do agendamento");
           $("#modalDadosPaciente .modal-nome").html("Aluno/Paciente: <b>" + event.title + "</b>&nbsp;&nbsp;&nbsp;");
           $("#modalDadosPaciente .modal-profissional").html("Profissional: <b>" + event.profissional + "</b>&nbsp;&nbsp;&nbsp;");
-          $("#modalDadosPaciente .modal-agend").html("Tipo de agendamento: <b>" + agendamento + "</b>&nbsp;&nbsp;&nbsp;");                   
+          $("#modalDadosPaciente .modal-agend").html("Tipo de agendamento: <b>" + agendamento + "</b>&nbsp;&nbsp;&nbsp;");                  
           $("#pof").html(event.profissional);
           $("#dt").html($.fullCalendar.formatDate(event.start, "DD/MM/YYYY"));
           let id = event.id;
@@ -583,6 +585,7 @@ $JsEventClick = '
                                 <button type="button" class="btn btn-primary" id="cadastraAluno">Cadastrar Aluno</button>
                                 <h5 class="modal-prof">Prof</h5>
                                 <h5 class="modal-agend">Agenda</h5>
+                                <h5 class="modal-conv">Convênio</h5>
                                 <h5 class="modal-horario">horario</h5> 
                                 <h5 class="modal-just">jutificativa</h5>
                                 <h5 class="modal-usu"></h5>
