@@ -166,13 +166,15 @@ class Event extends Model
   public $usuarioModificacao;
 
   public $dataModificacao;
+
+  public $convenio;
   
 
   public function rules()
   {
     return [
       [['id', 'resourceId', 'status'], 'integer'],
-      ['title, allDay, start, end, url, className, source, color, backgroundColor, borderColor, textColor, nonstandard, profissional, justificativa, numero, descricao, objetivo, idAluno, urlAvaliacao, nome, telefone, usuarioModificacao, dataModificacao', 'safe'],
+      ['title, allDay, start, end, url, className, source, color, backgroundColor, borderColor, textColor, nonstandard, profissional, justificativa, numero, descricao, objetivo, idAluno, urlAvaliacao, nome, telefone, usuarioModificacao, dataModificacao, convenio', 'safe'],
       ['editable, startEditable, durationEditable', 'boolean'],
     ];
   }

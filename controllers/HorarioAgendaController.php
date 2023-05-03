@@ -269,6 +269,11 @@ class HorarioAgendaController extends Controller {
                     $horarioAux->title = $horario->aluno->nm_aluno;
                     $horarioAux->idAluno = $horario->id_aluno;
                     $horarioAux->numero = $horario->aluno->ds_whatsapp;
+                    if($horario->aluno->convenio != null){
+                     $horarioAux->convenio = $horario->aluno->convenio->ds_nome;
+                    }else{
+                        $horarioAux->convenio = "Não há";
+                    }
                 } else {
                     $horarioAux->id = $horario->id;
                     $horarioAux->title = $horario->nome;
@@ -298,9 +303,15 @@ class HorarioAgendaController extends Controller {
                             $horarioAux->color = '#00BFFF';
                             $horarioAux->backgroundColor = '#00BFFF';
                         } else {
-                            //COR BRANCA
-                            $horarioAux->color = '#FFFAFA';
-                            $horarioAux->backgroundColor = '#FFFAFA';
+                            if(strpos( $horarioAux->convenio, "UBS" ) !== false){
+                                //COR PINK
+                                $horarioAux->color = '#F3B1D6';
+                                $horarioAux->backgroundColor = '#F3B1D6';
+                            }else{
+                                //COR BRANCA
+                                $horarioAux->color = '#FFFAFA';
+                                $horarioAux->backgroundColor = '#FFFAFA';
+                            }
                         }
                         $horarioAux->textColor = 'black';
                     } else {
