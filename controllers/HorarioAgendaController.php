@@ -278,6 +278,7 @@ class HorarioAgendaController extends Controller {
                     $horarioAux->id = $horario->id;
                     $horarioAux->title = $horario->nome;
                     $horarioAux->numero = $horario->telefone;
+                    $horarioAux->convenio = "Não há";
                 }
                 $horarioAux->status = $horario->status;
                 $horarioAux->usuarioModificacao = $horario->ds_usuario_modificacao;
