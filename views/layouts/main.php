@@ -66,6 +66,7 @@ AppAsset::register($this);
                             ['label' => 'Ficha do Aluno', 'url' => ['/ficha-aluno/index']],
                       //      ['label' => 'Backup', 'url' => ['/backup-database/backup-database']],
                             (Yii::$app->user->identity != null && Yii::$app->user->identity->permissao === 'Administrador') ? ['label' => 'Usuários', 'url' => ['/usuarios/index']] : ['label' => ''],
+                            (Yii::$app->user->identity != null && (Yii::$app->user->identity->permissao === 'Secretaria' || Yii::$app->user->identity->permissao === 'Administrador')) ? ['label' => 'Backup do Sistema', 'url' => ['/export/index']] : ['label' => ''],
                         ]
                     ],
                     ['label' => '<i class="fas fa-print"></i> Relatórios', 'url' => ['/site/about'],

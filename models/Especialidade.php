@@ -55,4 +55,23 @@ class Especialidade extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Turma::className(), ['id_especialidade' => 'id_especialidade']);
     }
+
+    public function exportData()
+    {
+        $data = $this->find()->asArray()->all();
+        $filename = 'backup_especialidade_'.date('Y-m-d').'.csv';
+        $filepath = Yii::getAlias('@app/runtime/' . $filename);
+        
+        if($data !=null){
+            $file = fopen($filepath, 'w');
+            fputcsv($file, array_keys($data[0])); // Escreve os cabeçalhos
+            
+            foreach ($data as $row) {
+                fputcsv($file, $row); // Escreve os dados
+            }
+            
+            fclose($file);
+        }
+        return $filepath;
+    }
 }

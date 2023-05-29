@@ -468,4 +468,22 @@ class BoletimAluno extends \yii\db\ActiveRecord {
         return $avaliacao;
     }
 
+    public function exportData()
+    {
+        $data = $this->find()->asArray()->all();
+        $filename = 'backup_boletim_aluno_'.date('Y-m-d').'.csv';
+        $filepath = Yii::getAlias('@app/runtime/' . $filename);
+        
+        if($data !=null){
+            $file = fopen($filepath, 'w');
+            fputcsv($file, array_keys($data[0])); // Escreve os cabeçalhos
+            
+            foreach ($data as $row) {
+                fputcsv($file, $row); // Escreve os dados
+            }
+            
+            fclose($file);
+        }
+        return $filepath;
+    }
 }
