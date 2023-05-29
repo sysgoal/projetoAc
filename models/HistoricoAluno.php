@@ -83,4 +83,23 @@ class HistoricoAluno extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Aluno::className(), ['id' => 'id_aluno']);
     }
+
+    public function exportData()
+    {
+        $data = $this->find()->asArray()->all();
+        $filename = 'backup_historico_alunos_'.date('Y-m-d').'.csv';
+        $filepath = Yii::getAlias('@app/runtime/' . $filename);
+        
+        if($data !=null){
+            $file = fopen($filepath, 'w');
+            fputcsv($file, array_keys($data[0])); // Escreve os cabeçalhos
+            
+            foreach ($data as $row) {
+                fputcsv($file, $row); // Escreve os dados
+            }
+            
+            fclose($file);
+        }
+        return $filepath;
+    }
 }

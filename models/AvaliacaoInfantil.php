@@ -108,4 +108,23 @@ class AvaliacaoInfantil extends \yii\db\ActiveRecord
         array_unshift($models, new Aluno);
         return ArrayHelper::map($models, 'id', 'nm_aluno');
     }
+
+    public function exportData()
+    {
+        $data = $this->find()->asArray()->all();
+        $filename = 'backup_avaliacao_infantil_'.date('Y-m-d').'.csv';
+        $filepath = Yii::getAlias('@app/runtime/' . $filename);
+        
+        if($data !=null){
+            $file = fopen($filepath, 'w');
+            fputcsv($file, array_keys($data[0])); // Escreve os cabeçalhos
+            
+            foreach ($data as $row) {
+                fputcsv($file, $row); // Escreve os dados
+            }
+            
+            fclose($file);
+        }
+        return $filepath;
+    }
 }

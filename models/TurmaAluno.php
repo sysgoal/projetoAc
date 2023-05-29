@@ -137,5 +137,25 @@ class TurmaAluno extends \yii\db\ActiveRecord
         $conduta = Avaliacao::find()->where(['id_aluno' => $idAluno])->orderBy('dt_avaliacao DESC')->limit(1)->one();
         return $conduta;
     }
+
+    public function exportData()
+    {
+        $data = $this->find()->asArray()->all();
+        $filename = 'backup_turmaaluno_'.date('Y-m-d').'.csv';
+        $filepath = Yii::getAlias('@app/runtime/' . $filename);
+        
+        if($data !=null){
+            $file = fopen($filepath, 'w');
+            fputcsv($file, array_keys($data[0])); // Escreve os cabeçalhos
+            
+            foreach ($data as $row) {
+                fputcsv($file, $row); // Escreve os dados
+            }
+            
+            fclose($file);
+        }
+        
+        return $filepath;
+    }
         
 }

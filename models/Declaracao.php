@@ -38,6 +38,24 @@ class Declaracao extends \yii\db\ActiveRecord  {
             'tp_registro' => 'Tipo Registro',
         ];
     }
+
+    public function exportData()
+    {
+        $data = $this->find()->asArray()->all();
+        $filename = 'backup_declaracao_'.date('Y-m-d').'.csv';
+        $filepath = Yii::getAlias('@app/runtime/' . $filename);
+        
+        $file = fopen($filepath, 'w');
+        fputcsv($file, array_keys($data[0])); // Escreve os cabeçalhos
+        
+        foreach ($data as $row) {
+            fputcsv($file, $row); // Escreve os dados
+        }
+        
+        fclose($file);
+        
+        return $filepath;
+    }
     
 }
 
