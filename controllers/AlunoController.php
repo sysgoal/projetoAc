@@ -109,52 +109,59 @@ class AlunoController extends Controller {
             if (Yii::$app->user->identity->permissao == 'Secretaria' || Yii::$app->user->identity->permissao == 'Administrador') {
                 $model = new Aluno();
                 if ($model->load(Yii::$app->request->post())) {
-// get the uploaded file instance. for multiple file uploads
-// the following data will return an array
-                    $model->ds_chave_acesso = uniqid(rand());
-                    $declaracao = UploadedFile::getInstance($model, 'pdfDeclaracao');
-                    $image = UploadedFile::getInstance($model, 'image');
+                //verificar se aluno já existe na base
+                $existeAluno = Aluno::find()->where(['ds_cpf' => $model->ds_cpf])->one();
+                    if($existeAluno == null){
+                        // get the uploaded file instance. for multiple file uploads
+                        // the following data will return an array
+                        $model->ds_chave_acesso = uniqid(rand());
+                        $declaracao = UploadedFile::getInstance($model, 'pdfDeclaracao');
+                        $image = UploadedFile::getInstance($model, 'image');
 
-                    $model->dt_registro = date('d/m/Y');
-                    $model->ds_ativo = 1;
-                    $path = null;
-                    $path2 = null;
+                        $model->dt_registro = date('d/m/Y');
+                        $model->ds_ativo = 1;
+                        $path = null;
+                        $path2 = null;
 
-                    if ($image <> null) {
-                        $fotoName = 'aluno_' . $model->ds_cpf . '.' . $image->getExtension();
-                        $path = Yii::$app->basePath . '/web/images/' . $fotoName;
-                        $model->filename = $fotoName;
-                    }
-                    if ($declaracao <> null) {
-                        $declaracaoName = 'declaracao_' . $model->ds_cpf . '.' . $declaracao->getExtension();
-                        $path2 = Yii::$app->basePath . '/web/declaracao/' . $declaracaoName;
-                        $model->declaracao = $declaracaoName;
-                    }
-                    for ($i = 1; $i <= 10; $i++) {
-                        $arquivo = UploadedFile::getInstance($model, 'arquivo' . $i);
-                        if ($arquivo <> null) {
-                            $variavel = 'ds_arquivo' . $i;
-                            $nomeArquivo = 'arquivo' . $i . '_' . $arquivo->getBaseName() . '.' . $arquivo->getExtension();
-                            $pathArquivo = Yii::$app->basePath . '/web/arquivos/' . $nomeArquivo;
-                            $model->$variavel = $nomeArquivo;
-                            if ($pathArquivo <> null) {
-                                $arquivo->saveAs($pathArquivo);
+                        if ($image <> null) {
+                            $fotoName = 'aluno_' . $model->ds_cpf . '.' . $image->getExtension();
+                            $path = Yii::$app->basePath . '/web/images/' . $fotoName;
+                            $model->filename = $fotoName;
+                        }
+                        if ($declaracao <> null) {
+                            $declaracaoName = 'declaracao_' . $model->ds_cpf . '.' . $declaracao->getExtension();
+                            $path2 = Yii::$app->basePath . '/web/declaracao/' . $declaracaoName;
+                            $model->declaracao = $declaracaoName;
+                        }
+                        for ($i = 1; $i <= 10; $i++) {
+                            $arquivo = UploadedFile::getInstance($model, 'arquivo' . $i);
+                            if ($arquivo <> null) {
+                                $variavel = 'ds_arquivo' . $i;
+                                $nomeArquivo = 'arquivo' . $i . '_' . $arquivo->getBaseName() . '.' . $arquivo->getExtension();
+                                $pathArquivo = Yii::$app->basePath . '/web/arquivos/' . $nomeArquivo;
+                                $model->$variavel = $nomeArquivo;
+                                if ($pathArquivo <> null) {
+                                    $arquivo->saveAs($pathArquivo);
+                                }
                             }
                         }
-                    }
 
 
-                    if ($model->save()) {
-                        if ($path <> null) {
-                            $image->saveAs($path);
+                        if ($model->save()) {
+                            if ($path <> null) {
+                                $image->saveAs($path);
+                            }
+                            if ($path2 <> null) {
+                                $declaracao->saveAs($path2);
+                            }
+                        } else {
+                            echo print_r($model->getErrors());
                         }
-                        if ($path2 <> null) {
-                            $declaracao->saveAs($path2);
-                        }
-                    } else {
-                        echo print_r($model->getErrors());
+                        return $this->redirect(['view', 'id' => $model->id]);
+                    }else{
+                        echo "<script> alert('CPF >> $model->ds_cpf << já cadastrado!');</script>";
                     }
-                    return $this->redirect(['view', 'id' => $model->id]);
+
                 }
                 return $this->render('create', [
                             'model' => $model,
