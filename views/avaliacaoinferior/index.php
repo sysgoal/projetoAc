@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'id_aluno',
                      'contentOptions' => ['style' => 'width:700px; white-space: normal;'],
                      'value' => function ($model, $index, $widget) 
-                                { return $model->aluno->nm_aluno; },
+                                { return $model->aluno != null ? $model->aluno->nm_aluno : ""; },
                     'filter' => Select2::widget(
                         [
                             'model' => $searchModel,

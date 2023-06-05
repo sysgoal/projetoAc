@@ -53,12 +53,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],*/   
                                         
               ['class' => 'yii\grid\ActionColumn',
-                'template' => '{view}{update}{delete}',
-                'visibleButtons' => [
+                'template' => '{view}{update}',
+               /* 'visibleButtons' => [
                     'delete' => function ($model, $key, $index) {
                         return Yii::$app->user->identity->permissao === 'Administrador';
                     }
-                ],
+                ],*/
             //  'visible' => Yii::$app->user->isGuest ? false : true,
             ],
         ],        
