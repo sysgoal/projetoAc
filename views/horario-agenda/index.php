@@ -83,8 +83,12 @@ $JsEventClick = '
                  $("#cadastraAluno").show();
                 } 
             }else {
-                if(event.idAluno != null) {                    
+                if(event.idAluno != null) {  
+                  if(permissao == "Secretaria"){                  
+                    $("#historico").hide();
+                  }else{
                     $("#historico").show();
+                  }
                 } else{
                     $("#cadastraAluno").show();
                 } 
