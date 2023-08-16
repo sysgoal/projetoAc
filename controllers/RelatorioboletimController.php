@@ -179,10 +179,10 @@ class RelatorioboletimController extends Controller {
         $pdf->MultiCell(23, 7, 'ABD', 1, 'C', 0, 0, '', '', true);
         $pdf->MultiCell(25, 7, 'FLEX', 1, 'C', 0, 0, '', '', true);
         
-        $pdf->Ln(7);
+       // $pdf->Ln(7);
         foreach ($avaliacao as $aval7) {
             if (!($aval7->ds_altura == null && $aval7->ds_peso == null && $aval7->ds_imc == null && $aval7->ds_pa == null && $aval7->ds_abdominal == null && $aval7->ds_flexibilidade == null)) {
-                   $pdf->Ln(1);
+                   $pdf->Ln(7);
                     $pdf->MultiCell(24, 7, $aval7->dt_avaliacao, 1, 'C', 0, 0, '', '', true);
                     $pdf->MultiCell(23, 7, $aval7->ds_altura , 1, 'C', 0, 0, '', '', true);
                     $pdf->MultiCell(23, 7, $aval7->ds_peso, 1, 'C', 0, 0, '', '', true);
@@ -202,10 +202,10 @@ class RelatorioboletimController extends Controller {
         $pdf->MultiCell(23, 7, 'QUAD', 1, 'C', 0, 0, '', '', true);
         $pdf->MultiCell(23, 7, 'COXA', 1, 'C', 0, 0, '', '', true);
         $pdf->MultiCell(23, 7, 'PERNA', 1, 'C', 0, 0, '', '', true);
-        $pdf->Ln(7);
+       // $pdf->Ln(7);
         foreach ($avaliacao as $aval5) {
                 if (!($aval5->ds_cintura == null && $aval5->ds_braco_de == null && $aval5->ds_torax_abm == null && $aval5->ds_quadril_culote == null && $aval5->ds_coxa_de == null && $aval5->ds_panturrilha_de == null)) {
-                    $pdf->Ln(1);
+                    $pdf->Ln(7);
                     $pdf->MultiCell(26, 7, $aval5->dt_avaliacao, 1, 'C', 0, 0, '', '', true);                
                     $pdf->MultiCell(23, 7, $aval5->ds_braco_de, 1, 'C', 0, 0, '', '', true);
                     $pdf->MultiCell(23, 7, $aval5->ds_torax_abm , 1, 'C', 0, 0, '', '', true);

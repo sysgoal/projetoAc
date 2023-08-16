@@ -52,7 +52,11 @@ $this->params['breadcrumbs'][] = $this->title;
                          [
                 'attribute' => 'id_profissional',                
                 'value' => function ($model, $index, $widget) {
-                    return $model->profissional->nm_profissional;
+                    if($model->profissional != null){
+                        return $model->profissional->nm_profissional;
+                    }else{
+                        return "";
+                    }
                 },
               
             ],                       
