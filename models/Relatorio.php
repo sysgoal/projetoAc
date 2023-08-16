@@ -37,12 +37,12 @@ class Relatorio extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_aluno', 'ds_relatorio'], 'required'],
+            [['id_aluno', 'id_profissional','ds_relatorio'], 'required'],
             [['id_aluno', 'id_profissional'], 'integer'],
             [['dt_relatorio'], 'date', 'format' => 'dd/MM/yyyy'],
             [['ds_relatorio'], 'string', 'max' => 2000],
-            [['id_aluno'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['id_aluno' => 'id']],
-            [['id_profissional'], 'exist', 'skipOnError' => true, 'targetClass' => Profissional::className(), 'targetAttribute' => ['id_profissional' => 'id_profissional']],
+            [['id_aluno'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::class, 'targetAttribute' => ['id_aluno' => 'id']],
+            [['id_profissional'], 'exist', 'skipOnError' => true, 'targetClass' => Profissional::class, 'targetAttribute' => ['id_profissional' => 'id_profissional']],
         ];
     }
 
@@ -67,7 +67,7 @@ class Relatorio extends \yii\db\ActiveRecord
      */
     public function getAluno()
     {
-        return $this->hasOne(Aluno::className(), ['id' => 'id_aluno']);
+        return $this->hasOne(Aluno::class, ['id' => 'id_aluno']);
     }
 
     /**
