@@ -356,7 +356,7 @@ class RelatorioController extends Controller {
     }
 
     public function actionRelatorioalunoavaliacao($id = 5) {
-        if (Yii::$app->user->id) {
+       /*  if (Yii::$app->user->id) {
 
             // chart.getImageURI();// passar o retorno dessa funcao para um hidden ou algo do tipo
 // usando fdpf para gerar o pdf com a imagem
@@ -368,9 +368,11 @@ class RelatorioController extends Controller {
             $pdf->Cell(40, 10, 'Hello Image!');
             $pdf->Image($pic, 10, 30, $tamanho, $largura, 'png');
             $pdf->Output('tmp/doc.pdf');
-        } else {
+        } else { 
             return $this->redirect(['site/about']);
         }
+        */
+        
     }
 
     public function actionRelatorioinformativo($id) {
@@ -380,10 +382,14 @@ class RelatorioController extends Controller {
             if ($aluno === null) {
                 throw new NotFoundHttpException;
             }
-
-            $nomeProf = $model->profissional->nm_profissional;
-            $tipoRegistro = $model->profissional->tp_registro;
-            $nrRegistro = $model->profissional->nr_registro;
+            $nomeProf = "Profissional não informado".
+            $tipoRegistro = "";
+            $nrRegistro = "";
+            if($model->profissional != null){
+                $nomeProf = $model->profissional->nm_profissional;
+                $tipoRegistro = $model->profissional->tp_registro;
+                $nrRegistro = $model->profissional->nr_registro;
+            }
             $descricao = $model->ds_relatorio;
 
             $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
