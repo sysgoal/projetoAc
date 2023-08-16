@@ -37,7 +37,7 @@ class Relatorio extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_aluno', 'ds_relatorio'], 'required'],
+            [['id_aluno', 'id_profissional','ds_relatorio'], 'required'],
             [['id_aluno', 'id_profissional'], 'integer'],
             [['dt_relatorio'], 'date', 'format' => 'dd/MM/yyyy'],
             [['ds_relatorio'], 'string', 'max' => 2000],

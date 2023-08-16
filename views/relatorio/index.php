@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     if($model->profissional != null){
                         return $model->profissional->nm_profissional;
                     }else{
-                        return "";
+                        return "Profissional não informado";
                     }
                 },
               
