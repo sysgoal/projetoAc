@@ -92,7 +92,7 @@ $('#zap').click(function(){
     number = number.replace("-", "");
     number = "55"+number;
        
-        pagina = "http://academiaa.tk/web/index.php?r=relatorio/bioimpedanciapdf&id="+chave;
+        pagina = "https://sistema.harmoniafazbem.com.br/web/index.php?r=relatorio/bioimpedanciapdf&id="+chave;
     
        let msg = "Prezado(a) *"+nome+"* segue o link para visualizar sua avaliação: "+pagina; 
         
