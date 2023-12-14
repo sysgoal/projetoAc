@@ -17,8 +17,23 @@ class AvaliacaoHipopressivoSearch extends AvaliacaoHipopressivo
     public function rules()
     {
         return [
-            [['id_avaliacao', 'id_aluno', 'nr_cigarro', 'nr_tempo_tabagismo', 'nr_tempo_ex_tabagismo', 'nr_refeicoes_dia', 'id_profissional', 'ds_idade_atual'], 'integer'],
-            [['dt_avaliacao', 'ds_motivo', 'ds_medicamento', 'ds_patologia', 'ds_cirurgia', 'fl_tabagista', 'ds_comentario_tabagismo', 'ds_doenca_respiratoria', 'ds_comentario_doenca_respiratoria', 'nr_filhos', 'ds_ciclo_cesaria', 'nr_nocturia', 'fl_relacao_dor', 'fl_relacao_prazer', 'fl_incontinencia', 'fl_endema', 'fl_dor_circulatorio', 'ds_comentario_circulatorio', 'fl_restricao', 'ds_comentario_disgestivo', 'nr_litros_agua_dia', 'ds_flexibilidade', 'ds_orientacoes', 'ds_conduta', 'ds_foto1', 'ds_foto2', 'ds_foto3', 'ds_foto4', 'ds_foto5', 'ds_foto6', 'ds_foto7', 'ds_video', 'ds_medico_responsavel', 'ds_sono', 'ds_alergia', 'fl_dor', 'ds_atividade_fisica', 'ds_ativo_sedentario', 'ds_dor', 'ds_endema', 'ds_incontinencia', 'ds_intestino', 'ds_avaliacao_postural', 'ds_acool', 'ds_braco_de', 'ds_pa', 'ds_cintura', 'ds_temperatura', 'ds_torax_abm', 'ds_quadril_culote', 'ds_coxa_de', 'ds_panturrilha_de', 'ds_sexo', 'ds_tonus', 'ds_abdominal', 'ds_altura', 'ds_peso', 'ds_massa_magra', 'ds_massa_gorda', 'ds_idade', 'ds_metabolismo', 'ds_imc', 'ds_gordura_visceral', 'ds_10_acima', 'ds_5_acima', 'ds_5_abaixo', 'ds_10_abaixo', 'ds_umbigo', 'ds_observacao', 'ds_competencia', 'ds_diastase', 'ds_anamnese_medico', 'ds_aparelho_circ'], 'safe'],
+            [['id_avaliacao', 'id_aluno', 'nr_cigarro', 'nr_tempo_tabagismo', 'nr_tempo_ex_tabagismo', 
+            'nr_refeicoes_dia', 'id_profissional', 'ds_idade_atual'], 'integer'],
+            [['dt_avaliacao', 'ds_motivo', 'ds_medicamento', 'ds_patologia', 'ds_cirurgia', 
+            'fl_tabagista', 'ds_comentario_tabagismo', 'ds_doenca_respiratoria', 
+            'ds_comentario_doenca_respiratoria', 'nr_filhos', 'ds_ciclo_cesaria', 
+            'nr_nocturia', 'fl_relacao_dor', 'fl_relacao_prazer', 'fl_incontinencia',
+             'fl_endema', 'fl_dor_circulatorio', 'ds_comentario_circulatorio', 'fl_restricao',
+              'ds_comentario_disgestivo', 'nr_litros_agua_dia', 'ds_flexibilidade', 'ds_orientacoes', 
+              'ds_conduta', 'ds_foto1', 'ds_foto2', 'ds_foto3', 'ds_foto4', 'ds_foto5', 'ds_foto6', 
+              'ds_foto7', 'ds_video', 'ds_medico_responsavel', 'ds_sono', 'ds_alergia', 'fl_dor',
+               'ds_atividade_fisica', 'ds_ativo_sedentario', 'ds_dor', 'ds_endema', 'ds_incontinencia',
+                'ds_intestino', 'ds_avaliacao_postural', 'ds_acool', 'ds_braco_relax_d', 'ds_pa', 'ds_cintura',
+                 'ds_temperatura', 'ds_torax', 'ds_quadril', 'ds_coxa_med_d', 'ds_panturrilha_d',
+                  'ds_sexo', 'ds_tonus', 'ds_abdomen', 'ds_altura', 'ds_peso', 'ds_massa_magra',
+                   'ds_massa_gorda', 'ds_idade', 'ds_metabolismo', 'ds_imc', 'ds_gordura_visceral', 
+                   'ds_10_acima', 'ds_5_acima', 'ds_5_abaixo', 'ds_10_abaixo', 'ds_umbigo', 'ds_observacao', 
+                   'ds_competencia', 'ds_diastase', 'ds_anamnese_medico', 'ds_aparelho_circ'], 'safe'],
         ];
     }
 
@@ -112,17 +127,19 @@ class AvaliacaoHipopressivoSearch extends AvaliacaoHipopressivo
             ->andFilterWhere(['like', 'ds_intestino', $this->ds_intestino])
             ->andFilterWhere(['like', 'ds_avaliacao_postural', $this->ds_avaliacao_postural])
             ->andFilterWhere(['like', 'ds_acool', $this->ds_acool])
-            ->andFilterWhere(['like', 'ds_braco_de', $this->ds_braco_de])
+            ->andFilterWhere(['like', 'ds_braco_relax_d', $this->ds_braco_relax_d])
             ->andFilterWhere(['like', 'ds_pa', $this->ds_pa])
             ->andFilterWhere(['like', 'ds_cintura', $this->ds_cintura])
             ->andFilterWhere(['like', 'ds_temperatura', $this->ds_temperatura])
-            ->andFilterWhere(['like', 'ds_torax_abm', $this->ds_torax_abm])
-            ->andFilterWhere(['like', 'ds_quadril_culote', $this->ds_quadril_culote])
-            ->andFilterWhere(['like', 'ds_coxa_de', $this->ds_coxa_de])
-            ->andFilterWhere(['like', 'ds_panturrilha_de', $this->ds_panturrilha_de])
+            ->andFilterWhere(['like', 'ds_torax', $this->ds_torax])
+            ->andFilterWhere(['like', 'ds_quadril', $this->ds_quadril])
+            ->andFilterWhere(['like', 'ds_coxa_med_d', $this->ds_coxa_med_d])
+            ->andFilterWhere(['like', 'ds_coxa_med_e', $this->ds_coxa_med_e])
+            ->andFilterWhere(['like', 'ds_panturrilha_d', $this->ds_panturrilha_d])
+            ->andFilterWhere(['like', 'ds_panturrilha_e', $this->ds_panturrilha_e])
             ->andFilterWhere(['like', 'ds_sexo', $this->ds_sexo])
             ->andFilterWhere(['like', 'ds_tonus', $this->ds_tonus])
-            ->andFilterWhere(['like', 'ds_abdominal', $this->ds_abdominal])
+            ->andFilterWhere(['like', 'ds_abdomen', $this->ds_abdomen])
             ->andFilterWhere(['like', 'ds_altura', $this->ds_altura])
             ->andFilterWhere(['like', 'ds_peso', $this->ds_peso])
             ->andFilterWhere(['like', 'ds_massa_magra', $this->ds_massa_magra])
@@ -219,17 +236,17 @@ class AvaliacaoHipopressivoSearch extends AvaliacaoHipopressivo
             ->andFilterWhere(['like', 'ds_intestino', $this->ds_intestino])
             ->andFilterWhere(['like', 'ds_avaliacao_postural', $this->ds_avaliacao_postural])
             ->andFilterWhere(['like', 'ds_acool', $this->ds_acool])
-            ->andFilterWhere(['like', 'ds_braco_de', $this->ds_braco_de])
+            ->andFilterWhere(['like', 'ds_braco_relax_d', $this->ds_braco_relax_d])
             ->andFilterWhere(['like', 'ds_pa', $this->ds_pa])
             ->andFilterWhere(['like', 'ds_cintura', $this->ds_cintura])
             ->andFilterWhere(['like', 'ds_temperatura', $this->ds_temperatura])
-            ->andFilterWhere(['like', 'ds_torax_abm', $this->ds_torax_abm])
-            ->andFilterWhere(['like', 'ds_quadril_culote', $this->ds_quadril_culote])
-            ->andFilterWhere(['like', 'ds_coxa_de', $this->ds_coxa_de])
-            ->andFilterWhere(['like', 'ds_panturrilha_de', $this->ds_panturrilha_de])
+            ->andFilterWhere(['like', 'ds_torax', $this->ds_torax])
+            ->andFilterWhere(['like', 'ds_quadril', $this->ds_quadril])
+            ->andFilterWhere(['like', 'ds_coxa_med_d', $this->ds_coxa_med_d])
+            ->andFilterWhere(['like', 'ds_panturrilha_d', $this->ds_panturrilha_d])
             ->andFilterWhere(['like', 'ds_sexo', $this->ds_sexo])
             ->andFilterWhere(['like', 'ds_tonus', $this->ds_tonus])
-            ->andFilterWhere(['like', 'ds_abdominal', $this->ds_abdominal])
+            ->andFilterWhere(['like', 'ds_abdomen', $this->ds_abdomen])
             ->andFilterWhere(['like', 'ds_altura', $this->ds_altura])
             ->andFilterWhere(['like', 'ds_peso', $this->ds_peso])
             ->andFilterWhere(['like', 'ds_massa_magra', $this->ds_massa_magra])

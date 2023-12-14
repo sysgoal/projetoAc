@@ -146,7 +146,7 @@ $this->registerJs($script);
     <div class="row">
        
         <div class="col-md-3">
-            <?= $form->field($model, 'ds_quadril_culote')->textInput(['id' => 'quadril']) ?>          
+            <?= $form->field($model, 'ds_quadril')->textInput(['id' => 'quadril']) ?>          
         </div>
 
             <div class="col-md-3">

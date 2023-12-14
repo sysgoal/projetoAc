@@ -519,7 +519,11 @@ $this->registerJs($script);
                 'content' => $this->render('_form_reprodutor', ['model' => $model, 'form' => $form]),
             ],
             
-             
+            [
+                'label' => '<i class="fas fa-ruler"></i> Perimetros',
+                'content' => $this->render('_form_perimetros', ['model' => $model, 'form' => $form]),
+            ], 
+
             [
                 'label' => '<i class="fas fa-x-ray"></i> Hipopressivo',
                 'content' => $this->render('_form_hipopressivo', ['model' => $model, 'form' => $form]),
