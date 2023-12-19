@@ -561,9 +561,10 @@ class Avaliacao extends \yii\db\ActiveRecord {
                 $item['alto1'] = 1.1;
             }
             $item['alto'] = 2;
-            if ($bio->ds_quadril_culote != 0 && $bio->ds_cintura != null) {
+            if ($bio->ds_quadril != 0 && $bio->ds_cintura != null) {
+                
 
-                $conta = ( str_replace(',', '.', $bio->ds_cintura) / str_replace(',', '.', $bio->ds_quadril_culote));
+                $conta = ( str_replace(',', '.', $bio->ds_cintura) / str_replace(',', '.', $bio->ds_quadril));
                 $item['cintura'] = round($conta, 2);
             } else {
                 $item['cintura'] = 0;
