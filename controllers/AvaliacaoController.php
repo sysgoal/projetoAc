@@ -365,7 +365,7 @@ class AvaliacaoController extends Controller {
                     if ($video <> null) {
                         $fotoName = 'video_' . $model->aluno->ds_cpf . '.' . $video->getExtension();
                         //$path1 = Yii::$app->basePath . '\\web\\video\\'. $fotoName;
-                        $path8 = YYii::$app->basePath . '/web/video/' . $fotoName;
+                        $path8 = Yii::$app->basePath . '/web/video/' . $fotoName;
                         $model->ds_video = $fotoName;
                     }
                     if ($model->save()) {
@@ -624,15 +624,20 @@ class AvaliacaoController extends Controller {
                  $item->nr_nocturia = $itemAvaliacaoHipo->nr_nocturia;
                  $item->ds_incontinencia = $itemAvaliacaoHipo->ds_incontinencia;
                  $item->ds_avaliacao_postural = $itemAvaliacaoHipo->ds_avaliacao_postural;
-                 $item->ds_braco_de = $itemAvaliacaoHipo->ds_braco_de;
-                 $item->ds_torax_abm = $itemAvaliacaoHipo->ds_torax_abm;
+                 $item->ds_braco_relax_d = $itemAvaliacaoHipo->ds_braco_relax_d;
+                 $item->ds_braco_relax_e = $itemAvaliacaoHipo->ds_braco_relax_e;
+                 $item->ds_antebraco_d = $itemAvaliacaoHipo->ds_antebraco_d; 
+                 $item->ds_antebraco_e = $itemAvaliacaoHipo->ds_antebraco_e;
+                 $item->ds_torax = $itemAvaliacaoHipo->ds_torax;
                  $item->ds_tonus = $itemAvaliacaoHipo->ds_tonus;
                  $item->ds_cintura = $itemAvaliacaoHipo->ds_cintura;
                  $item->ds_10_abaixo = $itemAvaliacaoHipo->ds_10_abaixo;
                  $item->ds_10_acima = $itemAvaliacaoHipo->ds_10_acima;
-                 $item->ds_quadril_culote = $itemAvaliacaoHipo->ds_quadril_culote;
-                 $item->ds_coxa_de = $itemAvaliacaoHipo->ds_coxa_de;
-                 $item->ds_panturrilha_de = $itemAvaliacaoHipo->ds_panturrilha_de;
+                 $item->ds_quadril = $itemAvaliacaoHipo->ds_quadril;
+                 $item->ds_coxa_med_d = $itemAvaliacaoHipo->ds_coxa_med_d;
+                 $item->ds_coxa_med_e = $itemAvaliacaoHipo->ds_coxa_med_e;
+                 $item->ds_panturrilha_d = $itemAvaliacaoHipo->ds_panturrilha_d;
+                 $item->ds_panturrilha_e = $itemAvaliacaoHipo->ds_panturrilha_e;
                  $item->ds_pa = $itemAvaliacaoHipo->ds_pa;
                  $item->ds_altura = $itemAvaliacaoHipo->ds_altura;
                  $item->ds_flexibilidade = $itemAvaliacaoHipo->ds_flexibilidade;

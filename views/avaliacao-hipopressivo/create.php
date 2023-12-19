@@ -290,7 +290,7 @@ $('#quadril').click(function() {
         let dados = [];
             $.each(resultadoAval, function (index, value) {       
                  var dtaval = value.dt_avaliacao;              
-                 dados[index] =  '<b>'+formataDate(dtaval,'pt-br')+'</b>' + ' - ' + value.ds_quadril_culote + '<br/>';
+                 dados[index] =  '<b>'+formataDate(dtaval,'pt-br')+'</b>' + ' - ' + value.ds_quadril + '<br/>';
              });     
             $('#historicos').html('<b><u>Quadril</u></b> <br/>' + dados.join(' '));      
 });  
@@ -519,7 +519,11 @@ $this->registerJs($script);
                 'content' => $this->render('_form_reprodutor', ['model' => $model, 'form' => $form]),
             ],
             
-             
+            [
+                'label' => '<i class="fas fa-ruler"></i> Perimetros',
+                'content' => $this->render('_form_perimetros', ['model' => $model, 'form' => $form]),
+            ], 
+
             [
                 'label' => '<i class="fas fa-x-ray"></i> Hipopressivo',
                 'content' => $this->render('_form_hipopressivo', ['model' => $model, 'form' => $form]),

@@ -163,6 +163,35 @@ $this->params['breadcrumbs'][] = $this->title
 
 
     <div class="col-sm-6 col-md-6 col-lg-6" >
+        <font color = "blue"><b>Perimetros</b></font><br><br>
+        <?=
+        DetailView::widget([
+            'model' => $model,
+            'template' => "<tr><th  style='width:250px'>{label}</th><td>{value}</td></tr>",
+            'attributes' => [
+                'ds_torax',
+                'ds_antebraco_d',
+                'ds_antebraco_e',
+                'ds_braco_relax_d',
+                'ds_braco_relax_e',
+                'ds_braco_cont_d',
+                'ds_braco_cont_e',
+                'ds_coxa_med_d',
+                'ds_coxa_med_e',
+                'ds_panturrilha_d',
+                'ds_panturrilha_e',
+                'ds_torax',
+                'ds_abdomen',
+                'ds_cintura',
+                'ds_ombro',
+                'ds_pescoco',
+
+            ],
+        ]);
+        ?>
+    </div>
+
+    <div class="col-sm-6 col-md-6 col-lg-6" >
         <font color = "blue"><b>Hipopressivo</b></font><br><br>
         <?=
         DetailView::widget([
@@ -187,13 +216,14 @@ $this->params['breadcrumbs'][] = $this->title
                 'ds_10_abaixo',
                 'ds_imc',
                 'ds_rcq',
-                'ds_quadril_culote',
+                'ds_quadril',
                 'ds_flexibilidade',
                 'ds_pa',
             ],
         ]);
         ?>
     </div>
+
 
     <div class="col-sm-6 col-md-6 col-lg-6" >
 

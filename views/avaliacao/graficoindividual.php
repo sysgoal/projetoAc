@@ -23,7 +23,7 @@ foreach ($avaliacaos as $controle) {
     if ($controle->ds_massa_gorda != null && $controle->ds_massa_gorda != 0 && $gordura != null) {
         $idGordura++;
     }
-    if ($controle->ds_quadril_culote != null && $controle->ds_quadril_culote != 0 && $controle->ds_cintura != null && $controle->ds_cintura != 0 && $cinturaQuadril != null) {
+    if ($controle->ds_quadril != null && $controle->ds_quadril != 0 && $controle->ds_cintura != null && $controle->ds_cintura != 0 && $cinturaQuadril != null) {
         $idCintura++;
     }
     if ($controle->ds_gordura_visceral != null && $controle->ds_gordura_visceral != 0 && $visceral != null) {
@@ -115,13 +115,13 @@ $this->registerCss($css);
 <br>
 
 <div id="noprint">
-    <p align = "center">
+    <p align="center">
         <a href="javascript:;" onclick="window.print();return false">
-            <?= Html::buttonInput('Imprimir', ['class' => 'btn btn-success', 'id' => 'myButton',]) ?>           
+            <?= Html::buttonInput('Imprimir', ['class' => 'btn btn-success', 'id' => 'myButton',]) ?>
         </a>
 
-        <?= Html::buttonInput('Enviar por Whastapp ', ['class' => 'btn btn-success', 'id' => 'zap']) ?>     
-        <?= Html::buttonInput($id, ['class' => 'btn btn-success', 'id' => 'aluno']) ?> 
+        <?= Html::buttonInput('Enviar por Whastapp ', ['class' => 'btn btn-success', 'id' => 'zap']) ?>
+        <?= Html::buttonInput($id, ['class' => 'btn btn-success', 'id' => 'aluno']) ?>
 
 
 
@@ -131,22 +131,22 @@ $this->registerCss($css);
 
 <div id="chart_div"></div>
 <div class="print" id="print">
-    <table class="quotation" style="width:85%" >
+    <table class="quotation" style="width:85%">
         <thead>
             <tr>
                 <th colspan="2">Avaliador: <?php echo $model->profissional->nm_profissional ?> | CREF: <?php echo $model->profissional->nr_registro ?> </th>
 
             </tr>
             <tr>
-                <th colspan="2">Aluno: <b><?php echo $model->aluno->nm_aluno ?> | </b> Idade: <b> <?php echo $model->aluno->getIdade() ?>  anos</b>  </th>
+                <th colspan="2">Aluno: <b><?php echo $model->aluno->nm_aluno ?> | </b> Idade: <b> <?php echo $model->aluno->getIdade() ?> anos</b> </th>
 
             </tr>
             <tr>
                 <th colspan="2">Peso: <?php echo $model->ds_peso ?> Kg | Altura: <?php echo $model->ds_altura ?> m</th>
 
-            </tr>          
+            </tr>
         </thead>
-        <tbody>    
+        <tbody>
 
 
             <tr>
@@ -190,35 +190,40 @@ $this->registerCss($css);
                                         'visibleInLegend' => false,
                                         'enableInteractivity' => false,
                                     ],
-                                    4 => ['type' => 'line',
+                                    4 => [
+                                        'type' => 'line',
                                         'color' => 'yellow',
                                         'pointSize' => 4,
                                         'lineWidth' => 1,
                                         'pointShape' => 'square',
                                         'visibleInLegend' => true,
                                     ],
-                                    5 => ['type' => 'line',
+                                    5 => [
+                                        'type' => 'line',
                                         'color' => 'green',
                                         'pointSize' => 4,
                                         'lineWidth' => 1,
                                         'pointShape' => 'square',
                                         'visibleInLegend' => true,
                                     ],
-                                    6 => ['type' => 'line',
+                                    6 => [
+                                        'type' => 'line',
                                         'color' => '#FF6633',
                                         'pointSize' => 4,
                                         'lineWidth' => 1,
                                         'pointShape' => 'square',
                                         'visibleInLegend' => true,
                                     ],
-                                    7 => ['type' => 'line',
+                                    7 => [
+                                        'type' => 'line',
                                         'color' => 'red',
                                         'pointSize' => 4,
                                         'pointShape' => 'square',
                                         'visibleInLegend' => true,
                                         'lineWidth' => 1,
                                     ],
-                                    8 => ['type' => 'line',
+                                    8 => [
+                                        'type' => 'line',
                                         'color' => 'black',
                                         'pointSize' => 10,
                                         'pointShape' => 'square',
@@ -232,8 +237,10 @@ $this->registerCss($css);
                                         'fontSize' => 13,
                                         'italic' => false
                                     ],
-                                    'viewWindow' => ['min' => 0,
-                                        'max' => 40]
+                                    'viewWindow' => [
+                                        'min' => 0,
+                                        'max' => 40
+                                    ]
                                 ],
                                 'legend' => [
                                     'position' => 'top',
@@ -248,449 +255,496 @@ $this->registerCss($css);
                     ?>
                 </th>
                 <th> <?php
-                    if ($idImc != 0) {
-                        echo '<table><tr><td>Data</td><td>Imc</td></tr>';
-                        foreach ($avaliacaos as $aval) {
-                            echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>' . $aval->ds_imc . '</td></tr>';
-                        }
-                        echo '</table>';
-                    }
-                    ?></th>
-            </tr>
-
-            <tr>
-                <th>
-                    <br>
-                    <br>
-<?php
-if ($idGordura != 0) {
-    echo ComboChart::widget([
-        'id' => 'gorduraCorporal',
-        'data' => $gordura,
-        'options' => [
-            'chartArea' => [
-                'left' => '15%',
-                'width' => '60%',
-                'height' => 350
-            ],
-            // 'MaxValue' => 50,
-            'width' => 900,
-            'height' => 400,
-            'isStacked' => true,
-            'legend' => 'bottom',
-            'seriesType' => 'area',
-            'areaOpacity' => 0.4,
-            'series' => [
-                0 => [
-                    'lineWidth' => 0,
-                    'visibleInLegend' => false,
-                    'enableInteractivity' => false,
-                ],
-                1 => [
-                    'lineWidth' => 0,
-                    'visibleInLegend' => false,
-                    'enableInteractivity' => false,
-                ],
-                2 => [
-                    'lineWidth' => 0,
-                    'visibleInLegend' => false,
-                    'enableInteractivity' => false,
-                ],
-                3 => [
-                    'lineWidth' => 0,
-                    'visibleInLegend' => false,
-                    'enableInteractivity' => false,
-                ],
-                4 => ['type' => 'line',
-                    'color' => 'yellow',
-                    'pointSize' => 4,
-                    'lineWidth' => 1,
-                    'pointShape' => 'square',
-                    'visibleInLegend' => true,
-                ],
-                5 => ['type' => 'line',
-                    'color' => 'green',
-                    'pointSize' => 4,
-                    'lineWidth' => 1,
-                    'pointShape' => 'square',
-                    'visibleInLegend' => true,
-                ],
-                6 => ['type' => 'line',
-                    'color' => '#FF6633',
-                    'pointSize' => 4,
-                    'lineWidth' => 1,
-                    'pointShape' => 'square',
-                    'visibleInLegend' => true,
-                ],
-                7 => ['type' => 'line',
-                    'color' => 'red',
-                    'pointSize' => 4,
-                    'pointShape' => 'square',
-                    'visibleInLegend' => true,
-                    'lineWidth' => 1,
-                ],
-                8 => ['type' => 'line',
-                    'color' => 'black',
-                    'pointSize' => 10,
-                    'pointShape' => 'square',
-                ]
-            ],
-            'colors' => ['yellow', 'green', '#FF6633', 'red'],
-            'pointSize' => 4,
-            'vAxis' => [
-                'title' => '% gordura corporal',
-                'titleTextStyle' => [
-                    'fontSize' => 13,
-                    'italic' => false
-                ],
-                'viewWindow' => ['min' => 0,
-                    'max' => 50]
-            ],
-            'legend' => [
-                'position' => 'top',
-                'alignment' => 'end',
-                'textStyle' => [
-                    'fontSize' => 12
-                ]
-            ],
-        ]
-    ]);
-}
-?>
-                </th>
-                <th> <?php
-                    if ($idGordura != 0) {
-                        echo '<table><tr><td>Data</td><td>% Gordura</td></tr>';
-                        foreach ($avaliacaos as $aval) {
-                            echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>' . $aval->ds_massa_gorda . '</td></tr>';
-                        }
-                        echo '</table>';
-                    }
-                    ?></th>
-            </tr>
-
-            <tr>
-                <th>
-<?php
-if ($idCintura != 0) {
-    echo ComboChart::widget([
-        'id' => 'cinturaQuadril',
-        'data' => $cinturaQuadril,
-        'options' => [
-            'chartArea' => [
-                'left' => '15%',
-                'width' => '60%',
-                'height' => 350
-            ],
-            // 'MaxValue' => 50,
-            'width' => 900,
-            'height' => 400,
-            'isStacked' => true,
-            'legend' => 'bottom',
-            'seriesType' => 'area',
-            'areaOpacity' => 0.4,
-            'series' => [
-                0 => [
-                    'lineWidth' => 0,
-                    'visibleInLegend' => false,
-                    'enableInteractivity' => false,
-                ],
-                1 => [
-                    'lineWidth' => 0,
-                    'visibleInLegend' => false,
-                    'enableInteractivity' => false,
-                ],
-                2 => [
-                    'lineWidth' => 0,
-                    'visibleInLegend' => false,
-                    'enableInteractivity' => false,
-                ],
-                3 => ['type' => 'line',
-                    'color' => 'yellow',
-                    'pointSize' => 4,
-                    'lineWidth' => 1,
-                    'pointShape' => 'square',
-                    'visibleInLegend' => true,
-                ],
-                4 => ['type' => 'line',
-                    'color' => 'green',
-                    'pointSize' => 4,
-                    'lineWidth' => 1,
-                    'pointShape' => 'square',
-                    'visibleInLegend' => true,
-                ],
-                5 => ['type' => 'line',
-                    'color' => '#FF6633',
-                    'pointSize' => 4,
-                    'lineWidth' => 1,
-                    'pointShape' => 'square',
-                    'visibleInLegend' => true,
-                ],
-                6 => ['type' => 'line',
-                    'color' => 'black',
-                    'pointSize' => 10,
-                    'pointShape' => 'square',
-                ]
-            ],
-            'colors' => ['yellow', 'green', '#FF6633'],
-            'pointSize' => 4,
-            'vAxis' => [
-                'title' => 'Relação Cintura - Quadril (RCQ)',
-                'titleTextStyle' => [
-                    'fontSize' => 13,
-                    'italic' => false
-                ],
-                'viewWindow' => ['min' => 0,
-                    'max' => 1.5]
-            ],
-            'legend' => [
-                'position' => 'top',
-                'alignment' => 'end',
-                'textStyle' => [
-                    'fontSize' => 12
-                ]
-            ],
-        ]
-    ]);
-}
-?>
-                </th>
-
-
-
-
-                <th> <?php
-                    if ($idCintura != 0) {
-                        echo '<table><tr><td>Data</td><td>Cintura/Quadril</td></tr>';
-                        foreach ($avaliacaos as $aval) {
-                            if ($idCintura != 0) {
-                                if ($aval->ds_quadril_culote != 0 && $aval->ds_cintura != null) {
-                                    echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>' . number_format(($aval->ds_cintura / $aval->ds_quadril_culote), 2, '.', '') . '</td></tr>';
-                                } else {
-                                    echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>0</td></tr>';
-                                }
+                        if ($idImc != 0) {
+                            echo '<table><tr><td>Data</td><td>Imc</td></tr>';
+                            foreach ($avaliacaos as $aval) {
+                                echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>' . $aval->ds_imc . '</td></tr>';
                             }
                             echo '</table>';
                         }
-                    }
-?></th>
+                        ?></th>
             </tr>
 
             <tr>
                 <th>
-<?php
-if ($idVisceral != 0) {
-    echo ComboChart::widget([
-        'id' => 'gorduraVisceral',
-        'data' => $visceral,
-        'options' => [
-            'chartArea' => [
-                'left' => '15%',
-                'width' => '60%',
-                'height' => 350
-            ],
-            // 'MaxValue' => 50,
-            'width' => 900,
-            'height' => 400,
-            'isStacked' => true,
-            'legend' => 'bottom',
-            'seriesType' => 'area',
-            'areaOpacity' => 0.4,
-            'series' => [
-                0 => [
-                    'lineWidth' => 0,
-                    'visibleInLegend' => false,
-                    'enableInteractivity' => false,
-                ],
-                1 => [
-                    'lineWidth' => 0,
-                    'visibleInLegend' => false,
-                    'enableInteractivity' => false,
-                ],
-                2 => [
-                    'lineWidth' => 0,
-                    'visibleInLegend' => false,
-                    'enableInteractivity' => false,
-                ],
-                3 => ['type' => 'line',
-                    'color' => 'green',
-                    'pointSize' => 4,
-                    'lineWidth' => 1,
-                    'pointShape' => 'square',
-                    'visibleInLegend' => true,
-                ],
-                4 => ['type' => 'line',
-                    'color' => 'yellow',
-                    'pointSize' => 4,
-                    'lineWidth' => 1,
-                    'pointShape' => 'square',
-                    'visibleInLegend' => true,
-                ],
-                5 => ['type' => 'line',
-                    'color' => '#FF6633',
-                    'pointSize' => 4,
-                    'lineWidth' => 1,
-                    'pointShape' => 'square',
-                    'visibleInLegend' => true,
-                ],
-                6 => ['type' => 'line',
-                    'color' => 'black',
-                    'pointSize' => 10,
-                    'pointShape' => 'square',
-                ]
-            ],
-            'colors' => ['green', 'yellow', '#FF6633'],
-            'pointSize' => 4,
-            'vAxis' => [
-                'title' => 'Gordura Visceral Relativo',
-                'titleTextStyle' => [
-                    'fontSize' => 13,
-                    'italic' => false
-                ],
-                'viewWindow' => ['min' => 0,
-                    'max' => 20]
-            ],
-            'legend' => [
-                'position' => 'top',
-                'alignment' => 'end',
-                'textStyle' => [
-                    'fontSize' => 12
-                ]
-            ],
-        ]
-    ]);
-}
-?>
+                    <br>
+                    <br>
+                    <?php
+                    if ($idGordura != 0) {
+                        echo ComboChart::widget([
+                            'id' => 'gorduraCorporal',
+                            'data' => $gordura,
+                            'options' => [
+                                'chartArea' => [
+                                    'left' => '15%',
+                                    'width' => '60%',
+                                    'height' => 350
+                                ],
+                                // 'MaxValue' => 50,
+                                'width' => 900,
+                                'height' => 400,
+                                'isStacked' => true,
+                                'legend' => 'bottom',
+                                'seriesType' => 'area',
+                                'areaOpacity' => 0.4,
+                                'series' => [
+                                    0 => [
+                                        'lineWidth' => 0,
+                                        'visibleInLegend' => false,
+                                        'enableInteractivity' => false,
+                                    ],
+                                    1 => [
+                                        'lineWidth' => 0,
+                                        'visibleInLegend' => false,
+                                        'enableInteractivity' => false,
+                                    ],
+                                    2 => [
+                                        'lineWidth' => 0,
+                                        'visibleInLegend' => false,
+                                        'enableInteractivity' => false,
+                                    ],
+                                    3 => [
+                                        'lineWidth' => 0,
+                                        'visibleInLegend' => false,
+                                        'enableInteractivity' => false,
+                                    ],
+                                    4 => [
+                                        'type' => 'line',
+                                        'color' => 'yellow',
+                                        'pointSize' => 4,
+                                        'lineWidth' => 1,
+                                        'pointShape' => 'square',
+                                        'visibleInLegend' => true,
+                                    ],
+                                    5 => [
+                                        'type' => 'line',
+                                        'color' => 'green',
+                                        'pointSize' => 4,
+                                        'lineWidth' => 1,
+                                        'pointShape' => 'square',
+                                        'visibleInLegend' => true,
+                                    ],
+                                    6 => [
+                                        'type' => 'line',
+                                        'color' => '#FF6633',
+                                        'pointSize' => 4,
+                                        'lineWidth' => 1,
+                                        'pointShape' => 'square',
+                                        'visibleInLegend' => true,
+                                    ],
+                                    7 => [
+                                        'type' => 'line',
+                                        'color' => 'red',
+                                        'pointSize' => 4,
+                                        'pointShape' => 'square',
+                                        'visibleInLegend' => true,
+                                        'lineWidth' => 1,
+                                    ],
+                                    8 => [
+                                        'type' => 'line',
+                                        'color' => 'black',
+                                        'pointSize' => 10,
+                                        'pointShape' => 'square',
+                                    ]
+                                ],
+                                'colors' => ['yellow', 'green', '#FF6633', 'red'],
+                                'pointSize' => 4,
+                                'vAxis' => [
+                                    'title' => '% gordura corporal',
+                                    'titleTextStyle' => [
+                                        'fontSize' => 13,
+                                        'italic' => false
+                                    ],
+                                    'viewWindow' => [
+                                        'min' => 0,
+                                        'max' => 50
+                                    ]
+                                ],
+                                'legend' => [
+                                    'position' => 'top',
+                                    'alignment' => 'end',
+                                    'textStyle' => [
+                                        'fontSize' => 12
+                                    ]
+                                ],
+                            ]
+                        ]);
+                    }
+                    ?>
+                </th>
+                <th> <?php
+                        if ($idGordura != 0) {
+                            echo '<table><tr><td>Data</td><td>% Gordura</td></tr>';
+                            foreach ($avaliacaos as $aval) {
+                                echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>' . $aval->ds_massa_gorda . '</td></tr>';
+                            }
+                            echo '</table>';
+                        }
+                        ?></th>
+            </tr>
+
+            <tr>
+                <th>
+                    <?php
+                    if ($idCintura != 0) {
+                        echo ComboChart::widget([
+                            'id' => 'cinturaQuadril',
+                            'data' => $cinturaQuadril,
+                            'options' => [
+                                'chartArea' => [
+                                    'left' => '15%',
+                                    'width' => '60%',
+                                    'height' => 350
+                                ],
+                                // 'MaxValue' => 50,
+                                'width' => 900,
+                                'height' => 400,
+                                'isStacked' => true,
+                                'legend' => 'bottom',
+                                'seriesType' => 'area',
+                                'areaOpacity' => 0.4,
+                                'series' => [
+                                    0 => [
+                                        'lineWidth' => 0,
+                                        'visibleInLegend' => false,
+                                        'enableInteractivity' => false,
+                                    ],
+                                    1 => [
+                                        'lineWidth' => 0,
+                                        'visibleInLegend' => false,
+                                        'enableInteractivity' => false,
+                                    ],
+                                    2 => [
+                                        'lineWidth' => 0,
+                                        'visibleInLegend' => false,
+                                        'enableInteractivity' => false,
+                                    ],
+                                    3 => [
+                                        'type' => 'line',
+                                        'color' => 'yellow',
+                                        'pointSize' => 4,
+                                        'lineWidth' => 1,
+                                        'pointShape' => 'square',
+                                        'visibleInLegend' => true,
+                                    ],
+                                    4 => [
+                                        'type' => 'line',
+                                        'color' => 'green',
+                                        'pointSize' => 4,
+                                        'lineWidth' => 1,
+                                        'pointShape' => 'square',
+                                        'visibleInLegend' => true,
+                                    ],
+                                    5 => [
+                                        'type' => 'line',
+                                        'color' => '#FF6633',
+                                        'pointSize' => 4,
+                                        'lineWidth' => 1,
+                                        'pointShape' => 'square',
+                                        'visibleInLegend' => true,
+                                    ],
+                                    6 => [
+                                        'type' => 'line',
+                                        'color' => 'black',
+                                        'pointSize' => 10,
+                                        'pointShape' => 'square',
+                                    ]
+                                ],
+                                'colors' => ['yellow', 'green', '#FF6633'],
+                                'pointSize' => 4,
+                                'vAxis' => [
+                                    'title' => 'Relação Cintura - Quadril (RCQ)',
+                                    'titleTextStyle' => [
+                                        'fontSize' => 13,
+                                        'italic' => false
+                                    ],
+                                    'viewWindow' => [
+                                        'min' => 0,
+                                        'max' => 1.5
+                                    ]
+                                ],
+                                'legend' => [
+                                    'position' => 'top',
+                                    'alignment' => 'end',
+                                    'textStyle' => [
+                                        'fontSize' => 12
+                                    ]
+                                ],
+                            ]
+                        ]);
+                    }
+                    ?>
                 </th>
 
 
 
 
                 <th> <?php
+                        if ($idCintura != 0) {
+                            echo '<table><tr><td>Data</td><td>Cintura/Quadril</td></tr>';
+                            foreach ($avaliacaos as $aval) {
+                                if ($idCintura != 0) {
+                                    if ($aval->ds_quadril != 0 && $aval->ds_cintura != null) {
+                                        echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>' . number_format(($aval->ds_cintura / $aval->ds_quadril), 2, '.', '') . '</td></tr>';
+                                    } else {
+                                        echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>0</td></tr>';
+                                    }
+                                }
+                                echo '</table>';
+                            }
+                        }
+                        ?></th>
+            </tr>
+
+            <tr>
+                <th>
+                    <?php
                     if ($idVisceral != 0) {
-                        echo '<table><tr><td>Data</td><td>Gordura Visceral</td></tr>';
-                        foreach ($avaliacaos as $aval) {
-                            echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>' . $aval->ds_gordura_visceral . '</td></tr>';
-                        }
-                        echo '</table>';
+                        echo ComboChart::widget([
+                            'id' => 'gorduraVisceral',
+                            'data' => $visceral,
+                            'options' => [
+                                'chartArea' => [
+                                    'left' => '15%',
+                                    'width' => '60%',
+                                    'height' => 350
+                                ],
+                                // 'MaxValue' => 50,
+                                'width' => 900,
+                                'height' => 400,
+                                'isStacked' => true,
+                                'legend' => 'bottom',
+                                'seriesType' => 'area',
+                                'areaOpacity' => 0.4,
+                                'series' => [
+                                    0 => [
+                                        'lineWidth' => 0,
+                                        'visibleInLegend' => false,
+                                        'enableInteractivity' => false,
+                                    ],
+                                    1 => [
+                                        'lineWidth' => 0,
+                                        'visibleInLegend' => false,
+                                        'enableInteractivity' => false,
+                                    ],
+                                    2 => [
+                                        'lineWidth' => 0,
+                                        'visibleInLegend' => false,
+                                        'enableInteractivity' => false,
+                                    ],
+                                    3 => [
+                                        'type' => 'line',
+                                        'color' => 'green',
+                                        'pointSize' => 4,
+                                        'lineWidth' => 1,
+                                        'pointShape' => 'square',
+                                        'visibleInLegend' => true,
+                                    ],
+                                    4 => [
+                                        'type' => 'line',
+                                        'color' => 'yellow',
+                                        'pointSize' => 4,
+                                        'lineWidth' => 1,
+                                        'pointShape' => 'square',
+                                        'visibleInLegend' => true,
+                                    ],
+                                    5 => [
+                                        'type' => 'line',
+                                        'color' => '#FF6633',
+                                        'pointSize' => 4,
+                                        'lineWidth' => 1,
+                                        'pointShape' => 'square',
+                                        'visibleInLegend' => true,
+                                    ],
+                                    6 => [
+                                        'type' => 'line',
+                                        'color' => 'black',
+                                        'pointSize' => 10,
+                                        'pointShape' => 'square',
+                                    ]
+                                ],
+                                'colors' => ['green', 'yellow', '#FF6633'],
+                                'pointSize' => 4,
+                                'vAxis' => [
+                                    'title' => 'Gordura Visceral Relativo',
+                                    'titleTextStyle' => [
+                                        'fontSize' => 13,
+                                        'italic' => false
+                                    ],
+                                    'viewWindow' => [
+                                        'min' => 0,
+                                        'max' => 20
+                                    ]
+                                ],
+                                'legend' => [
+                                    'position' => 'top',
+                                    'alignment' => 'end',
+                                    'textStyle' => [
+                                        'fontSize' => 12
+                                    ]
+                                ],
+                            ]
+                        ]);
                     }
-?></th>
+                    ?>
+                </th>
+
+
+
+
+                <th> <?php
+                        if ($idVisceral != 0) {
+                            echo '<table><tr><td>Data</td><td>Gordura Visceral</td></tr>';
+                            foreach ($avaliacaos as $aval) {
+                                echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>' . $aval->ds_gordura_visceral . '</td></tr>';
+                            }
+                            echo '</table>';
+                        }
+                        ?></th>
             </tr>
 
             <tr>
                 <th>
                     <br>
                     <br>
-<?php
-if ($idEsqueletico != 0) {
-    echo ComboChart::widget([
-        'id' => 'massaEsqueletica',
-        'data' => $esqueletico,
-        'options' => [
-            'chartArea' => [
-                'left' => '15%',
-                'width' => '60%',
-                'height' => 350
-            ],
-            // 'MaxValue' => 50,
-            'width' => 900,
-            'height' => 400,
-            'isStacked' => true,
-            'legend' => 'bottom',
-            'seriesType' => 'area',
-            'areaOpacity' => 0.4,
-            'series' => [
-                0 => [
-                    'lineWidth' => 0,
-                    'visibleInLegend' => false,
-                    'enableInteractivity' => false,
-                ],
-                1 => [
-                    'lineWidth' => 0,
-                    'visibleInLegend' => false,
-                    'enableInteractivity' => false,
-                ],
-                2 => [
-                    'lineWidth' => 0,
-                    'visibleInLegend' => false,
-                    'enableInteractivity' => false,
-                ],
-                3 => [
-                    'lineWidth' => 0,
-                    'visibleInLegend' => false,
-                    'enableInteractivity' => false,
-                ],
-                4 => ['type' => 'line',
-                    'color' => 'yellow',
-                    'pointSize' => 4,
-                    'lineWidth' => 1,
-                    'pointShape' => 'square',
-                    'visibleInLegend' => true,
-                ],
-                5 => ['type' => 'line',
-                    'color' => 'green',
-                    'pointSize' => 4,
-                    'lineWidth' => 1,
-                    'pointShape' => 'square',
-                    'visibleInLegend' => true,
-                ],
-                6 => ['type' => 'line',
-                    'color' => '#FF6633',
-                    'pointSize' => 4,
-                    'lineWidth' => 1,
-                    'pointShape' => 'square',
-                    'visibleInLegend' => true,
-                ],
-                7 => ['type' => 'line',
-                    'color' => 'red',
-                    'pointSize' => 4,
-                    'pointShape' => 'square',
-                    'visibleInLegend' => true,
-                    'lineWidth' => 1,
-                ],
-                8 => ['type' => 'line',
-                    'color' => 'black',
-                    'pointSize' => 10,
-                    'pointShape' => 'square',
-                ]
-            ],
-            'colors' => ['yellow', 'green', '#FF6633', 'red'],
-            'pointSize' => 4,
-            'vAxis' => [
-                'title' => 'Músculo Esquelético',
-                'titleTextStyle' => [
-                    'fontSize' => 13,
-                    'italic' => false
-                ],
-                'viewWindow' => ['min' => 0,
-                    'max' => 50]
-            ],
-            'legend' => [
-                'position' => 'top',
-                'alignment' => 'end',
-                'textStyle' => [
-                    'fontSize' => 12
-                ]
-            ],
-        ]
-    ]);
-}
-?>
+                    <?php
+                    if ($idEsqueletico != 0) {
+                        echo ComboChart::widget([
+                            'id' => 'massaEsqueletica',
+                            'data' => $esqueletico,
+                            'options' => [
+                                'chartArea' => [
+                                    'left' => '15%',
+                                    'width' => '60%',
+                                    'height' => 350
+                                ],
+                                // 'MaxValue' => 50,
+                                'width' => 900,
+                                'height' => 400,
+                                'isStacked' => true,
+                                'legend' => 'bottom',
+                                'seriesType' => 'area',
+                                'areaOpacity' => 0.4,
+                                'series' => [
+                                    0 => [
+                                        'lineWidth' => 0,
+                                        'visibleInLegend' => false,
+                                        'enableInteractivity' => false,
+                                    ],
+                                    1 => [
+                                        'lineWidth' => 0,
+                                        'visibleInLegend' => false,
+                                        'enableInteractivity' => false,
+                                    ],
+                                    2 => [
+                                        'lineWidth' => 0,
+                                        'visibleInLegend' => false,
+                                        'enableInteractivity' => false,
+                                    ],
+                                    3 => [
+                                        'lineWidth' => 0,
+                                        'visibleInLegend' => false,
+                                        'enableInteractivity' => false,
+                                    ],
+                                    4 => [
+                                        'type' => 'line',
+                                        'color' => 'yellow',
+                                        'pointSize' => 4,
+                                        'lineWidth' => 1,
+                                        'pointShape' => 'square',
+                                        'visibleInLegend' => true,
+                                    ],
+                                    5 => [
+                                        'type' => 'line',
+                                        'color' => 'green',
+                                        'pointSize' => 4,
+                                        'lineWidth' => 1,
+                                        'pointShape' => 'square',
+                                        'visibleInLegend' => true,
+                                    ],
+                                    6 => [
+                                        'type' => 'line',
+                                        'color' => '#FF6633',
+                                        'pointSize' => 4,
+                                        'lineWidth' => 1,
+                                        'pointShape' => 'square',
+                                        'visibleInLegend' => true,
+                                    ],
+                                    7 => [
+                                        'type' => 'line',
+                                        'color' => 'red',
+                                        'pointSize' => 4,
+                                        'pointShape' => 'square',
+                                        'visibleInLegend' => true,
+                                        'lineWidth' => 1,
+                                    ],
+                                    8 => [
+                                        'type' => 'line',
+                                        'color' => 'black',
+                                        'pointSize' => 10,
+                                        'pointShape' => 'square',
+                                    ]
+                                ],
+                                'colors' => ['yellow', 'green', '#FF6633', 'red'],
+                                'pointSize' => 4,
+                                'vAxis' => [
+                                    'title' => 'Músculo Esquelético',
+                                    'titleTextStyle' => [
+                                        'fontSize' => 13,
+                                        'italic' => false
+                                    ],
+                                    'viewWindow' => [
+                                        'min' => 0,
+                                        'max' => 50
+                                    ]
+                                ],
+                                'legend' => [
+                                    'position' => 'top',
+                                    'alignment' => 'end',
+                                    'textStyle' => [
+                                        'fontSize' => 12
+                                    ]
+                                ],
+                            ]
+                        ]);
+                    }
+                    ?>
                 </th>
                 <th> <?php
-                    if ($idEsqueletico != 0) {
-                        echo '<table><tr><td>Data</td><td>Músculo Esquelético</td></tr>';
-                        foreach ($avaliacaos as $aval) {
-                            echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>' . $aval->ds_massa_magra . '</td></tr>';
+                        if ($idEsqueletico != 0) {
+                            echo '<table><tr><td>Data</td><td>Músculo Esquelético</td></tr>';
+                            foreach ($avaliacaos as $aval) {
+                                echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>' . $aval->ds_massa_magra . '</td></tr>';
+                            }
+                            echo '</table>';
+                        }
+                        ?></th>
+            </tr>
+            <tr>
+                <th colspan="2"><?php
+                        echo '<table><tr><td> Data</td><td colspan=2>Antebraço</td>
+                        <td colspan=2>Braço Rel. M</td><td colspan=2> Braço Cont.
+                        </td><td colspan=2> Coxa M.</td><td colspan=2> Panturrilha</td></tr>';
+                        echo '<tr><td></td><td>Dir</td><td>Esq</td><td>Dir</td><td>Esq</td><td>Dir</td><td>Esq</td><td>Dir
+                        </td><td>Esq</td><td>Dir</td><td>Esq</td><td> Abd.</td><td> Quadril</td><td> Cint.</td><td> 
+                        Tórax</td><td> Ombro</td><td> Pesc.</td></tr>';
+                        foreach($avaliacaos as $aval){
+                            echo '<tr><td>'.$aval->dt_avaliacao. '</td><td>'. $aval->ds_antebraco_d. '</td><td>'.$aval->ds_antebraco_e.'</td>
+                            <td>'.$aval->ds_braco_relax_d.'</td><td>'.$aval->ds_braco_relax_e.'</td>
+                            <td>'.$aval->ds_braco_cont_d.'</td><td>'.$aval->ds_braco_cont_e.'</td>
+                            <td>'.$aval->ds_coxa_med_d.'</td><td>'.$aval->ds_coxa_med_e.'</td>
+                            <td>'.$aval->ds_panturrilha_d.'</td><td>'.$aval->ds_panturrilha_e.'</td>
+                            <td>'.$aval->ds_abdomen.'</td><td>'.$aval->ds_quadril.'</td><td>'.$aval->ds_cintura.'</td>
+                            <td>'.$aval->ds_torax.'</td><td>'.$aval->ds_ombro.'</td><td>'.$aval->ds_pescoco.'</td>
+                            </tr>';
                         }
                         echo '</table>';
-                    }
-                    ?></th>
+                    ?>
+                </th>
             </tr>
-
         </tbody>
         <tfoot>
-            <tr >
+            <tr>
                 <th colspan="2">Academia Harmonia Faz Bem - <?php echo date('Y') ?></th>
             </tr>
         </tfoot>

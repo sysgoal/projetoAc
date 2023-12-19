@@ -98,7 +98,7 @@ AppAsset::register($this);
                                     ['label' => 'Membro Inferior', 'url' => ['/avaliacaoinferior/index']],
                                     ['label' => 'Membro Superior', 'url' => ['/avaliacaosuperior/index']],
                                 ]],
-                            ['label' => 'Avalição da academia', 'options' => ['class' => 'treeview-menu'],
+                            ['label' => 'Avaliação da academia', 'options' => ['class' => 'treeview-menu'],
                                 'items' => [
                                     ['label' => 'Avaliação', 'url' => ['/avaliacao/index']],
                                     ['label' => 'Hipopressivo', 'url' => ['/avaliacao-hipopressivo/index']],                                    

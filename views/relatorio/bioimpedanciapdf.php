@@ -23,7 +23,7 @@ foreach ($avaliacaos as $controle){
     if($controle->ds_massa_gorda != null && $controle->ds_massa_gorda != 0){
         $idGordura++;
     }
-    if($controle->ds_quadril_culote != null && $controle->ds_quadril_culote != 0 
+    if($controle->ds_quadril != null && $controle->ds_quadril != 0 
             && $controle->ds_cintura != null &&  $controle->ds_cintura != 0){
         $idCintura++;
     }
@@ -439,8 +439,8 @@ $this->registerCss($css);
                  if($idCintura != 0){
                     echo '<table><tr><td>Data</td><td>Cintura/Quadril</td></tr>';
                     foreach ($avaliacaos as $aval) {
-                        if($aval->ds_quadril_culote != 0 && $aval->ds_cintura != null){
-                            echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>' . ($aval->ds_cintura/$aval->ds_quadril_culote) . '</td></tr>';
+                        if($aval->ds_quadril != 0 && $aval->ds_cintura != null){
+                            echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>' . ($aval->ds_cintura/$aval->ds_quadril) . '</td></tr>';
                         }else{
                             echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>0</td></tr>';
                         }
@@ -661,7 +661,28 @@ $this->registerCss($css);
                  }
                     ?></th>
             </tr>
-
+            <tr>
+                <th colspan="2"><?php
+                        echo '<table><tr><td> Data</td><td colspan=2>Antebraço</td>
+                        <td colspan=2>Braço Rel. M</td><td colspan=2> Braço Cont.
+                        </td><td colspan=2> Coxa M.</td><td colspan=2> Panturrilha</td></tr>';
+                        echo '<tr><td></td><td>Dir</td><td>Esq</td><td>Dir</td><td>Esq</td><td>Dir</td><td>Esq</td><td>Dir
+                        </td><td>Esq</td><td>Dir</td><td>Esq</td><td> Abd.</td><td> Quadril</td><td> Cint.</td><td> 
+                        Tórax</td><td> Ombro</td><td> Pesc.</td></tr>';
+                        foreach($avaliacaos as $aval){
+                            echo '<tr><td>'.$aval->dt_avaliacao. '</td><td>'. $aval->ds_antebraco_d. '</td><td>'.$aval->ds_antebraco_e.'</td>
+                            <td>'.$aval->ds_braco_relax_d.'</td><td>'.$aval->ds_braco_relax_e.'</td>
+                            <td>'.$aval->ds_braco_cont_d.'</td><td>'.$aval->ds_braco_cont_e.'</td>
+                            <td>'.$aval->ds_coxa_med_d.'</td><td>'.$aval->ds_coxa_med_e.'</td>
+                            <td>'.$aval->ds_panturrilha_d.'</td><td>'.$aval->ds_panturrilha_e.'</td>
+                            <td>'.$aval->ds_abdomen.'</td><td>'.$aval->ds_quadril.'</td><td>'.$aval->ds_cintura.'</td>
+                            <td>'.$aval->ds_torax.'</td><td>'.$aval->ds_ombro.'</td><td>'.$aval->ds_pescoco.'</td>
+                            </tr>';
+                        }
+                        echo '</table>';
+                    ?>
+                </th>
+            </tr>
         </tbody>
         <tfoot>
             <tr >

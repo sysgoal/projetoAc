@@ -64,17 +64,10 @@ use Yii;
  * @property string|null $ds_intestino
  * @property string|null $ds_avaliacao_postural
  * @property string|null $ds_acool
- * @property string|null $ds_braco_de
  * @property string|null $ds_pa
- * @property string|null $ds_cintura
  * @property string|null $ds_temperatura
- * @property string|null $ds_torax_abm
- * @property string|null $ds_quadril_culote
- * @property string|null $ds_coxa_de
- * @property string|null $ds_panturrilha_de
  * @property string|null $ds_sexo
  * @property string|null $ds_tonus
- * @property string|null $ds_abdominal
  * @property string|null $ds_altura
  * @property string|null $ds_peso
  * @property string|null $ds_massa_magra
@@ -91,6 +84,22 @@ use Yii;
  * @property string|null $ds_observacao
  * @property string|null $ds_competencia
  * @property string|null $ds_diastase
+ * @property string|null $ds_antebraco_d
+ * @property string|null $ds_antebraco_e
+ * @property string|null $ds_braco_relax_d
+ * @property string|null $ds_braco_relax_e
+ * @property string|null $ds_braco_cont_d
+ * @property string|null $ds_braco_cont_e
+ * @property string|null $ds_coxa_med_d
+ * @property string|null $ds_coxa_med_e
+ * @property string|null $ds_panturrilha_d
+ * @property string|null $ds_panturrilha_e
+ * @property string|null $ds_abdomen
+ * @property string|null $ds_cintura
+ * @property string|null $ds_ombro
+ * @property string|null $ds_quadril
+ * @property string|null $ds_torax
+ * @property string|null $ds_pescoco
  * @property int|null $id_profissional
  * @property int|null $ds_idade_atual
  * @property string|null $ds_anamnese_medico
@@ -145,11 +154,14 @@ class AvaliacaoHipopressivo extends \yii\db\ActiveRecord
                  'ds_dor', 'ds_competencia' ], 'string', 'max' => 500],
             
             [['nr_tempo_tabagismo', 'nr_tempo_ex_tabagismo',], 'string', 'max' => 100],
-            [['ds_braco_de', 'ds_pa', 'ds_cintura', 'ds_temperatura', 'ds_torax_abm', 'ds_quadril_culote', 'ds_coxa_de', 'ds_panturrilha_de', 'ds_metabolismo', 'ds_diastase'], 'string', 'max' => 100],
+            [['ds_pa', 'ds_temperatura',   'ds_metabolismo', 'ds_diastase'], 'string', 'max' => 100],
             [['ds_tonus'], 'string', 'max' => 50],
-            [['ds_abdominal', 'ds_altura', 'ds_peso', 'ds_massa_magra', 'ds_massa_gorda', 'ds_idade', 'ds_imc', 'ds_gordura_visceral', 'ds_10_acima', 'ds_5_acima', 'ds_5_abaixo', 'ds_10_abaixo', 'ds_umbigo'], 'string', 'max' => 10],
-            [['id_aluno'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::className(), 'targetAttribute' => ['id_aluno' => 'id']],
-            [['id_profissional'], 'exist', 'skipOnError' => true, 'targetClass' => Profissional::className(), 'targetAttribute' => ['id_profissional' => 'id_profissional']],
+            [['ds_antebraco_d', 'ds_antebraco_e', 'ds_braco_relax_d', 'ds_braco_relax_e', 'ds_braco_cont_d', 'ds_braco_cont_e', 'ds_coxa_med_d', 
+            'ds_coxa_med_e',  'ds_panturrilha_d', 'ds_panturrilha_e',
+            'ds_abdomen', 'ds_cintura', 'ds_ombro', 'ds_quadril', 'ds_torax', 'ds_pescoco'], 'string', 'max' => 10],
+            [['ds_altura', 'ds_peso', 'ds_massa_magra', 'ds_massa_gorda', 'ds_idade', 'ds_imc', 'ds_gordura_visceral', 'ds_10_acima', 'ds_5_acima', 'ds_5_abaixo', 'ds_10_abaixo', 'ds_umbigo'], 'string', 'max' => 10],
+            [['id_aluno'], 'exist', 'skipOnError' => true, 'targetClass' => Aluno::class, 'targetAttribute' => ['id_aluno' => 'id']],
+            [['id_profissional'], 'exist', 'skipOnError' => true, 'targetClass' => Profissional::class, 'targetAttribute' => ['id_profissional' => 'id_profissional']],
         ];
     }
 
@@ -210,17 +222,27 @@ class AvaliacaoHipopressivo extends \yii\db\ActiveRecord
             'ds_intestino' => 'Intestino',
             'ds_avaliacao_postural' => 'Avaliação Postural',
             'ds_acool' => 'Consumo de Álcool',
-            'ds_braco_de' => 'Braço D/ Braço E',
+            'ds_braco_relax_d' => 'Braço Relaxado',
             'ds_pa' => 'P.A',
-            'ds_cintura' => 'Abdomen(Cintura)',
             'ds_temperatura' => 'Temperatura',
-            'ds_torax_abm' => 'Tórax',
-            'ds_quadril_culote' => 'Quadril',
-            'ds_coxa_de' => 'Coxa D/ Coxa E',
-            'ds_panturrilha_de' => 'Panturrilha D/E',
+            'ds_torax' => 'Tórax',
+            'ds_cintura' => 'Cintura',
+            'ds_quadril' => 'Quadril',
+            'ds_coxa_med_d' => 'Coxa Medial Direita',
+            'ds_coxa_med_e' => 'Coxa Medial Esquerda',
+            'ds_panturrilha_d' => 'Panturrilha Direita',
+            'ds_panturrilha_e' => 'Panturrilha Esquerda',
+            'ds_antebraco_d'=>'Antebraço Direito',
+            'ds_antebraco_e'=>'Antebraço Esquerdo',
+            'ds_braco_relax_d'=> 'Braço Relaxado Direito',
+            'ds_braco_relax_e'=> 'Braço Relaxado Esquerdo',
+            'ds_braco_cont_d'=>'Braço Contraído Direito',
+            'ds_braco_cont_e'=>'Braço Contraído Esquerdo',
+            'ds_ombro'=>'Ombro',
+            'ds_pescoco'=>'Pescoço',
             'ds_sexo' => 'Descrição/Contraceptivo/Ciclo',
             'ds_tonus' => 'Força / Tônus',
-            'ds_abdominal' => 'Abdominal',
+            'ds_abdomen' => 'Abdômen',
             'ds_altura' => 'Altura',
             'ds_peso' => 'Peso',
             'ds_massa_magra' => 'Músculo esquelético',
@@ -259,11 +281,11 @@ class AvaliacaoHipopressivo extends \yii\db\ActiveRecord
      * @return \yii\db\ActiveQuery
      */
     public function getAluno() {
-        return $this->hasOne(Aluno::className(), ['id' => 'id_aluno']);
+        return $this->hasOne(Aluno::class, ['id' => 'id_aluno']);
     }
 
     public function getProfissional() {
-        return $this->hasOne(Profissional::className(), ['id_profissional' => 'id_profissional']);
+        return $this->hasOne(Profissional::class, ['id_profissional' => 'id_profissional']);
     }
 
     public function getDataListAluno() { // could be a static func as well
@@ -515,9 +537,9 @@ if($aux == 1){
                              
             }
             $item['alto'] = 2;
-            if($bio->ds_quadril_culote != 0 && $bio->ds_cintura != null){
+            if($bio->ds_quadril != 0 && $bio->ds_cintura != null){
                 
-                $conta =(  str_replace(',','.', $bio->ds_cintura)/ str_replace(',','.', $bio->ds_quadril_culote));
+                $conta =(  str_replace(',','.', $bio->ds_cintura)/ str_replace(',','.', $bio->ds_quadril));
                 $item['cintura'] = round($conta, 2) ;
             }else{
                 $item['cintura'] = 0;
@@ -751,11 +773,6 @@ if($aux == 1){
     
         }
         return $data;
-    }
-
-    public function getAvaliacaoFisioterapica($idAluno) {
-        $fisioterapica = AvaliacaoFisioterapica::find(['id_aluno' => $idAluno]);
-        return ArrayHelper::map($fisioterapica, 'id_aluno', 'dt_avaliacao', 'ds_altura', 'vr_peso', 'vr_imc', 'vr_pa', 'vr_abd', 'vr_flex', 'vr_equi');
     }
     
      public function getAvaliador($id){
