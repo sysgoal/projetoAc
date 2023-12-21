@@ -490,8 +490,8 @@ $this->registerCss($css);
                                         echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>0</td></tr>';
                                     }
                                 }
-                                echo '</table>';
                             }
+                            echo '</table>';
                         }
                         ?></th>
             </tr>
@@ -588,9 +588,6 @@ $this->registerCss($css);
                     }
                     ?>
                 </th>
-
-
-
 
                 <th> <?php
                         if ($idVisceral != 0) {
@@ -722,24 +719,24 @@ $this->registerCss($css);
             </tr>
             <tr>
                 <th colspan="2"><?php
-                        echo '<table><tr><td> Data</td><td colspan=2>Antebraço</td>
+                                echo '<table><tr><td> Data</td><td colspan=2>Antebraço</td>
                         <td colspan=2>Braço Rel. M</td><td colspan=2> Braço Cont.
                         </td><td colspan=2> Coxa M.</td><td colspan=2> Panturrilha</td></tr>';
-                        echo '<tr><td></td><td>Dir</td><td>Esq</td><td>Dir</td><td>Esq</td><td>Dir</td><td>Esq</td><td>Dir
+                                echo '<tr><td></td><td>Dir</td><td>Esq</td><td>Dir</td><td>Esq</td><td>Dir</td><td>Esq</td><td>Dir
                         </td><td>Esq</td><td>Dir</td><td>Esq</td><td> Abd.</td><td> Quadril</td><td> Cint.</td><td> 
                         Tórax</td><td> Ombro</td><td> Pesc.</td></tr>';
-                        foreach($avaliacaos as $aval){
-                            echo '<tr><td>'.$aval->dt_avaliacao. '</td><td>'. $aval->ds_antebraco_d. '</td><td>'.$aval->ds_antebraco_e.'</td>
-                            <td>'.$aval->ds_braco_relax_d.'</td><td>'.$aval->ds_braco_relax_e.'</td>
-                            <td>'.$aval->ds_braco_cont_d.'</td><td>'.$aval->ds_braco_cont_e.'</td>
-                            <td>'.$aval->ds_coxa_med_d.'</td><td>'.$aval->ds_coxa_med_e.'</td>
-                            <td>'.$aval->ds_panturrilha_d.'</td><td>'.$aval->ds_panturrilha_e.'</td>
-                            <td>'.$aval->ds_abdomen.'</td><td>'.$aval->ds_quadril.'</td><td>'.$aval->ds_cintura.'</td>
-                            <td>'.$aval->ds_torax.'</td><td>'.$aval->ds_ombro.'</td><td>'.$aval->ds_pescoco.'</td>
+                                foreach ($avaliacaos as $aval) {
+                                    echo '<tr><td>' . $aval->dt_avaliacao . '</td><td>' . $aval->ds_antebraco_d . '</td><td>' . $aval->ds_antebraco_e . '</td>
+                            <td>' . $aval->ds_braco_relax_d . '</td><td>' . $aval->ds_braco_relax_e . '</td>
+                            <td>' . $aval->ds_braco_cont_d . '</td><td>' . $aval->ds_braco_cont_e . '</td>
+                            <td>' . $aval->ds_coxa_med_d . '</td><td>' . $aval->ds_coxa_med_e . '</td>
+                            <td>' . $aval->ds_panturrilha_d . '</td><td>' . $aval->ds_panturrilha_e . '</td>
+                            <td>' . $aval->ds_abdomen . '</td><td>' . $aval->ds_quadril . '</td><td>' . $aval->ds_cintura . '</td>
+                            <td>' . $aval->ds_torax . '</td><td>' . $aval->ds_ombro . '</td><td>' . $aval->ds_pescoco . '</td>
                             </tr>';
-                        }
-                        echo '</table>';
-                    ?>
+                                }
+                                echo '</table>';
+                                ?>
                 </th>
             </tr>
         </tbody>
