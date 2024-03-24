@@ -288,7 +288,7 @@ class BoletimInfantilController extends Controller {
             $pdf->Ln(25);
             $pdf->SetFont('helvetica', '', 18);
             $pdf->Write(0, 'FESTA DAS TOUCAS', '', 0, 'C', true, 0, false, false, 0);
-            $pdf->Write(0, 'MARÇO - JULHO - NOVEMBRO', '', 0, 'C', true, 0, false, false, 0);
+            $pdf->Write(0, 'MARÇO - AGOSTO - DEZEMBRO', '', 0, 'C', true, 0, false, false, 0);
             $pdf->SetFont('helvetica', '', 13);
             $pdf->Write(0, '(Nos meses acima você fará um teste de ', '', 0, 'C', true, 0, false, false, 0);
             $pdf->Write(0, 'Aprendizado e uma Avaliação Fisioterápica)', '', 0, 'C', true, 0, false, false, 0);
