@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Avaliacao;
+use app\models\AvaliacaoHipopressivo;
 use app\models\AvaliacaoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -600,7 +601,7 @@ class AvaliacaoController extends Controller {
              }
              
             foreach ($avaliacoesHipopressivo as $itemAvaliacaoHipo){
-                 $item = new Avaliacao();
+                 $item = new AvaliacaoHipopressivo();
                  $item->id_avaliacao = $itemAvaliacaoHipo->id_avaliacao;
                  $item->id_aluno = $itemAvaliacaoHipo->id_aluno;
                  $item->ds_motivo = $itemAvaliacaoHipo->ds_motivo;

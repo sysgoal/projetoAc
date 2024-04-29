@@ -16,7 +16,7 @@ use Yii;
  * @property int $id_avaliacao
  * @property int $id_aluno
  * @property int $id_profissional
- * @property date $dt_avaliacao
+ * @property string $dt_avaliacao
  * @property string $ds_motivo
  * @property string $ds_medicamento
  * @property string $ds_patologia
