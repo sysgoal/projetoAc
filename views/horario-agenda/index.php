@@ -261,7 +261,7 @@ $JsEventClick = '
               horaFim: $("#horaFim").val()
             }, function(data) {
              
-                if(data < 6){
+                if(data < 7){
                   $.get("index.php?r=horario-agenda/insere-datas-reagendamento", {
                           id: event.id,
                           inicio: $("#horaIni").val(),
@@ -281,7 +281,7 @@ $JsEventClick = '
                        location.reload();
                       });
                     }else{
-                      alert("Não é possível adicionar mais de 6 marcações pro mesmo horário");
+                      alert("Não é possível adicionar mais de 7 marcações pro mesmo horário");
                     }
                   }
             return false;
