@@ -82,7 +82,7 @@ $('#cad').click(function() {
               dataAlt: datas,
               horaIni: inicio
             }, function(data) {
-              if(data < 6){
+              if(data < 7){
                 $.get('index.php?r=horario-agenda/insere-datas', {
                         aluno: aluno,
                         profissional: profissional,
