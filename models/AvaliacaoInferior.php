@@ -93,12 +93,13 @@ class AvaliacaoInferior extends \yii\db\ActiveRecord
             [[  'ds_disfuncao_avds',], 'string', 'max' => 200],
             [['ds_diagnostico_medico', 'ds_medico_responsavel', 'ds_queixa_atual', 
                'ds_dor', 'ds_localizacao', 'ds_medicamento_uso',
-                'ds_avaliacao_postural', 'ds_movimentacao_ativa', 'ds_obs_trendelenburg', 'ds_obs_patrick',
+                'ds_avaliacao_postural',  'ds_obs_trendelenburg', 'ds_obs_patrick',
                 'ds_obs_gillet', 'ds_obs_ober', 'ds_obs_teste_rigidez_quadril', 'ds_obs_teste_apley',
                 'ds_obs_gaveta_anterior', 'ds_obs_gaveta_posterior', 'ds_obs_teste_clarke', 'ds_obs_estresse_valgo', 
                 'ds_obs_estresse_varo', 'ds_obs_teste_thompson', 'ds_obs_adm_dorsiflexao', 
                 'ds_exames_complementares', 'ds_conduta','ds_locomocao', 'ds_hma'], 'string', 'max' => 800],
-            [['ds_frequencia_dor', 'situacao'], 'string', 'max' => 20],          
+            [['ds_frequencia_dor', 'situacao'], 'string', 'max' => 20],   
+            [['ds_movimentacao_ativa'], 'string', 'max'=>8000]       
         ];
     }
 
