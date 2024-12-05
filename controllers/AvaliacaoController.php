@@ -643,6 +643,17 @@ class AvaliacaoController extends Controller {
                  $item->ds_altura = $itemAvaliacaoHipo->ds_altura;
                  $item->ds_flexibilidade = $itemAvaliacaoHipo->ds_flexibilidade;
                  $item->ds_conduta = $itemAvaliacaoHipo->ds_conduta;
+                 $item->ds_diastase = $itemAvaliacaoHipo->ds_diastase;
+                 $item->ds_peso = $itemAvaliacaoHipo->ds_peso;
+                 $item->ds_massa_gorda = $itemAvaliacaoHipo->ds_massa_gorda;
+                 $item->ds_massa_magra = $itemAvaliacaoHipo->ds_massa_magra;
+                 $item->ds_metabolismo = $itemAvaliacaoHipo->ds_metabolismo;
+                 $item->ds_idade = $itemAvaliacaoHipo->ds_idade;
+                 $item->ds_gordura_visceral = $itemAvaliacaoHipo->ds_gordura_visceral;
+                 $item->ds_5_acima = $itemAvaliacaoHipo->ds_5_acima;
+                 $item->ds_umbigo = $itemAvaliacaoHipo->ds_umbigo;
+                 $item->ds_5_abaixo = $itemAvaliacaoHipo->ds_5_abaixo;
+                 $item->ds_competencia = $itemAvaliacaoHipo->ds_competencia;
                  $avalicoesResultado[] = $item;
                  
              }
