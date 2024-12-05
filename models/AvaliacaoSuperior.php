@@ -96,7 +96,7 @@ class AvaliacaoSuperior extends \yii\db\ActiveRecord
             [[ 'ds_disfuncao_avds', 
                 'ds_hma',  'ds_observacao_phalen', 'ds_obs_phalen_invertido', 
                  'situacao'], 'string', 'max' => 800],
-                 [['ds_movimentacao_ativa'], 'string', 'max'=>8000]  
+                 [['ds_movimentacao_ativa'], 'string', 'max'=>8000] , 
             [['ds_obs_de_quervain', 'ds_observacao_ultt', 'ds_obs_estresse_valgo', 'ds_obs_estresse_varo',
                 'ds_obs_resistencia_flexao', 'ds_obs_resistencia_extensao', 'ds_obs_subescapular', 
                 'ds_obs_supraespinhal', 'ds_obs_infraespinhal', 'ds_obs_redondo_menor', 'ds_obs_biceps', 
