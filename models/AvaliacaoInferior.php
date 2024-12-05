@@ -99,7 +99,7 @@ class AvaliacaoInferior extends \yii\db\ActiveRecord
                 'ds_obs_estresse_varo', 'ds_obs_teste_thompson', 'ds_obs_adm_dorsiflexao', 
                 'ds_exames_complementares', 'ds_conduta','ds_locomocao', 'ds_hma'], 'string', 'max' => 800],
             [['ds_frequencia_dor', 'situacao'], 'string', 'max' => 20],   
-            [['ds_movimentacao_ativa'], 'string', 'max'=>8000]       
+            [['ds_movimentacao_ativa'], 'string', 'max'=>8000],       
         ];
     }
 
